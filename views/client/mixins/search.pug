@@ -1,0 +1,6 @@
+mixin search(keyword)
+  .search-bar
+    form(action="products" method="GET" class="form-inline" id="form-search")
+      input.form-control(type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." value=keyword)
+      button.btn.btn-outline-success(type="submit" style="float: right;") 
+        i.fas.fa-search

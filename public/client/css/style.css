@@ -1,0 +1,159 @@
+
+/* Header */
+.header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.header .inner-logo img {
+  max-height: 50px;
+  max-width: 100%;
+}
+
+.header .inner-menu > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.header .inner-menu > ul > li {
+  margin-left: 20px;
+}
+
+/* End Header */
+
+/* Footer */
+.footer {
+  border-top: 1px solid #ddd;
+  padding: 10px 0;
+  background: #333;
+  color: #fff;
+  text-align: center;
+}
+
+.box-head {
+margin-bottom: 30px;
+}
+
+.box-head .inner-title {
+margin-bottom: 0;
+font-size: 28px;
+font-weight: 600;
+color: green;
+}
+
+/* End box-head */
+
+.product-item {
+border: 1px solid #ddd;
+border-radius: 8px;
+}
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+  height: 90%;
+  
+}
+
+.product-item .inner-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-item .inner-content {
+  padding: 15px;
+  font-size: 10px; 
+}
+
+.product-item .inner-content .inner-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+ .inner-price-new {
+  font-size: 16px;
+  font-weight: 600;
+  color: green;
+}
+
+ .inner-price-old {
+  font-size: 14px;
+  font-weight: 600;
+  color: red;
+  text-decoration: line-through;
+}
+
+ .inner-discount {
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  background: red;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+.inner-price-tag {
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  background: #007bff; /* Màu nền xanh */
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+
+
+.search-bar .form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar .form-control {
+  flex: 1;
+  margin-right: 5px; /* Khoảng cách giữa ô input và nút */
+}
+
+.search-bar .btn {
+  white-space: nowrap;
+}
+.product-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.product-item .inner-image img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.product-item .inner-content {
+  margin-top: 10px;
+}
+.footer {
+  font-size: 14px; /* Giảm kích thước font */
+}
+
+.footer h2 {
+  font-size: 16px; /* Giảm kích thước font cho tiêu đề */
+}
+
+.footer p, .footer a {
+  font-size: 14px; /* Giảm kích thước font cho đoạn văn và liên kết */
+}
+a {
+  text-decoration: none; /* Bỏ dấu gạch chân của tất cả các thẻ a */
+}
