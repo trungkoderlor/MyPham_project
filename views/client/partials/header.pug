@@ -1,23 +1,59 @@
 include ../mixins/search.pug
 include ../mixins/account.pug
+
 header.header
+  .container-fluid(style="background-color: #C7C7C7")
+    .row
+      .col-1 
+      .col-4
+        p Chuyên cung cấp mỹ phẩm chính hãng
+      .col-3(style="text-align:right")
+        p
+          i.fas.fa-phone
+          |  Điện thoại: (+84) 768-517-629
+      .col-4(style="text-align:right")
+        p
+          i.fas.fa-map-marker-alt
+          |  Địa chỉ: 55 Đường Giải Phóng, Quận HBT, Hà Nội
   .container
-    .row.align-items-center
-      .col-md-1
-      .col-md-2
-        .logo
-          a(href="/" class="navbar-brand") 
-            img(src="/images/dhtlogo.png" alt="logo" width="100px" )
-      .col-md-4
-        +search(keyword)
-      .col-md-3
-        nav
-          ul.nav.justify-content-center
-            li.nav-item
-              a.nav-link(href="/products") Sản Phẩm
-            li.nav-item
-              a.nav-link(href="/shopping-cart")
-                i.fas.fa-shopping-cart
-                |  Giỏ Hàng
-      .col-md-2.text-right
-        +account()     
+      .row.align-items-center
+        .col-md-1
+        .col-md-2
+          .logo
+            a(href="/" class="navbar-brand") 
+              img(src="/images/dhtlogo.png" alt="logo" width="100px" )
+        .col-md-4
+          +search(keyword)
+        .col-md-3
+          nav
+            ul.nav.justify-content-center
+              li.nav-item
+                a.nav-link(href="https://shopee.vn/" target="_blank" ) 
+                  img(src="https://cdn.bapperfume.com/media/core/icons/shopee.png"  alt="Shopee" width="30px")
+              li.nav-item
+                a.nav-link(href="/shopping-cart" style="margin-top:5px; color: black")
+                  i.fas.fa-shopping-cart
+                  |  Giỏ Hàng
+        .col-md-2.text-right
+          +account()   
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    .container()
+      button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNav()
+        ul.navbar-nav
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false")
+              | Danh mục sản phẩm
+            .dropdown-menu
+              a.dropdown-item(href="#") Sản phẩm 1
+              a.dropdown-item(href="#") Sản phẩm 2
+              a.dropdown-item(href="#") Sản phẩm 3
+          li.nav-item
+            a.nav-link(href="/") Trang chủ
+          li.nav-item
+            a.nav-link(href="/products") Sản Phẩm
+          li.nav-item
+            a.nav-link(href="/contact") Liên hệ
+          li.nav-item
+            a.nav-link(href="/about") Giới thiệu
