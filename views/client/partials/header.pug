@@ -5,16 +5,16 @@ header.header
   .container-fluid(style="background-color: #C7C7C7")
     .row
       .col-1 
-      .col-4
+      .col-6(style="text-align:left")
         p Chuyên cung cấp mỹ phẩm chính hãng
-      .col-3(style="text-align:right")
+      .col-2(style="text-align:right")
         p
           i.fas.fa-phone
-          |  Điện thoại: (+84) 768-517-629
-      .col-4(style="text-align:right")
+          |  (+84) 768-517-629
+      .col-3(style="text-align:right")
         p
           i.fas.fa-map-marker-alt
-          |  Địa chỉ: 55 Đường Giải Phóng, Quận HBT, Hà Nội
+          |  55 Đường Giải Phóng, Quận HBT, Hà Nội
   .container
       .row.align-items-center
         .col-md-1
@@ -46,9 +46,29 @@ header.header
             a.nav-link.dropdown-toggle(href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false")
               | Danh mục sản phẩm
             .dropdown-menu
-              a.dropdown-item(href="#") Sản phẩm 1
-              a.dropdown-item(href="#") Sản phẩm 2
-              a.dropdown-item(href="#") Sản phẩm 3
+              a.dropdown-item(href="#" id="dropdownbrand")
+                img(src="/images/brand.png" alt="Thương hiệu" style="width: 20px; height: 20px; margin-right: 10px;")
+                | Thương hiệu
+              .dropdown-brand 
+                a.dropdown-item(href="#")
+                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
+                  | GUCCI
+                a.dropdown-item(href="#")
+                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
+                  | CHANEL 
+                a.dropdown-item(href="#")
+                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
+                  | DIOR
+                a.dropdown-item(href="#")
+                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
+                  | OLAY 
+              a.dropdown-item(href="#")
+                img(src="/images/woman.png" alt="Mỹ phẩm Nữ" style="width: 20px; height: 20px; margin-right: 10px;")
+                | Mỹ phẩm Nữ
+              a.dropdown-item(href="#")
+                img(src="/images/man.png" alt="Mỹ phẩm Nam" style="width: 20px; height: 20px; margin-right: 10px;")
+                | Mỹ phẩm Nam
+              
           li.nav-item
             a.nav-link(href="/") Trang chủ
           li.nav-item

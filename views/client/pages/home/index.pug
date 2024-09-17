@@ -3,27 +3,45 @@ block main
   .container
     .row
       .col-md-12
-         h2.text-center.mb-4 Sản Phẩm Bán Chạy 
-    .row
-      each item in products
-        .col-6.col-md-4.col-lg-3
-          .product-item
-            .inner-image
-              img(
-                src=item.thumbnail 
-                alt=item.title
-              )
-            .inner-content
-              h3.inner-title 
-                a(href=`/products/${item.slug}`) #{item.title}
-              .row
-                .col-8
-                  .inner-price-new #{item.priceNew}$   
-                  .inner-price-old #{item.price}$              
-                  .inner-discount -#{item.discountPercentage}%
-                .col-4
-                  h5 tags:
-                  .inner-price-tag #{item.tags[0]}
-              
+        .carousel.slide#carouselExampleIndicators(data-ride="carousel" style="margin: 20px auto")
+          ol.carousel-indicators
+            each val, index in [0, 1, 2]
+              li(data-target="#carouselExampleIndicators" data-slide-to=index class=(index === 0 ? 'active' : ''))
+          .carousel-inner
+            each poster, index in posters
+              .carousel-item(class=(index === 0 ? 'active' : ''))
+                img.d-block.w-100(src=poster.src alt=poster.alt)
+          a.carousel-control-prev(href="#carouselExampleIndicators" role="button" data-slide="prev")
+            span.carousel-control-prev-icon(aria-hidden="true")
+            span.sr-only Previous
+          a.carousel-control-next(href="#carouselExampleIndicators" role="button" data-slide="next")
+            span.carousel-control-next-icon(aria-hidden="true")
+            span.sr-only Next
+    .container.bestseller
+      .row
+        .col-md-12
+          h2.text-center.mb-4(style="margin-bottom:10px") Sản Phẩm Bán Chạy
+          .inner-dir 
+      .row
+        each item in products
+          .col-6.col-md-4.col-lg-3
+            .product-item
+              .inner-image
+                img(
+                  src=item.thumbnail 
+                  alt=item.title
+                )
+              .inner-content
+                h3.inner-title 
+                  a(href=`/products/${item.slug}`) #{item.title}
+                .row
+                  .col-8
+                    .inner-price-new #{item.priceNew}$   
+                    .inner-price-old #{item.price}$              
+                    .inner-discount -#{item.discountPercentage}%
+                  .col-4
+                    h5 tags:
+                    .inner-price-tag #{item.tags[0]}
+                
               
       
