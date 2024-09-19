@@ -1,5 +1,8 @@
 
 /* Header */
+a{
+  text-decoration: none;
+}
 body,.container-fluid {
   margin: 0;
   padding: 0;
@@ -274,3 +277,37 @@ a {
 /* CSS cho product */
 
 /* end css cho product */
+/* css cho contact */
+.img_contact{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+/* end css cho contact */
+/* css cho about */
+/* CSS cho info-grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 cột */
+  grid-template-rows: auto auto; /* 2 hàng */
+  gap: 20px; /* Khoảng cách giữa các ô */
+  margin-top: 20px;
+}
+.img_about{
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+.info-item {
+  padding: 10px;
+  text-align: center;
+}
+.info-item h5{
+  text-align: center;
+}
+.info-item a{
+  text-align: center;
+  color: #000;
+}
+/* end css cho about */

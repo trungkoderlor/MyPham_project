@@ -1,0 +1,24 @@
+extends ../../../client/layouts/default.pug
+block main
+  .container(style="margin-top: 20px; border: 1px solid #ddd; border-radius: 30px;padding-bottom: 20px;")
+    .row
+      .col-md-12
+        h1.text-center(style="margin: 25px 0;") Liên Hệ
+        .row
+          .col-md-6
+            form
+              .form-group
+                label(for="name") Họ và Tên
+                input.form-control#name(type="text" placeholder="Nhập họ và tên của bạn")
+              .form-group
+                label(for="email") Email
+                input.form-control#email(type="email" placeholder="Nhập email của bạn")
+              .form-group
+                label(for="phone") Số điện thoại
+                input.form-control#phone(type="text" placeholder="Nhập số điện thoại của bạn")
+              .form-group
+                label(for="message") Nội dung
+                textarea.form-control#message(rows="5" placeholder="Nhập nội dung cần liên hệ")
+              button.btn.btn-primary#btn-send(type="submit") Gửi
+          .col-md-6
+            img(src="/images/contact.png" class="img_contact" alt="contact" style="width: 100%")
