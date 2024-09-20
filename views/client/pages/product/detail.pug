@@ -1,0 +1,27 @@
+extends ../../layouts/default.pug
+include ../../mixins/carouselSlide.pug
+include ../../mixins/rating.pug
+block main 
+ .container(style="margin-top: 20px; border: 1px solid #ddd; border-radius: 30px;padding-bottom: 20px;")
+    .row
+      .col-md-12
+        h4(style="margin-top: 20px") #{product.title}
+        .row
+          .col-md-6
+            +carouselSlide(product.images)
+          .col-md-6
+            .row
+              .price(style="margin: 20px 0 10px 0; font-size: 23px; font-weight: bold;") 
+                  span() Giá : #{product.priceNew}$
+                  span(style="color: red;text-decoration: line-through;margin-left:20px;") #{product.price}$
+              +rating(product) 
+              
+            h5(style="margin-top: 20px") Danh mục: 
+              each tag in product.tags
+                span.badge.badge-primary(style="margin-right: 5px") #{tag}          
+            
+            if (product.stock > 0)
+              h5(style="margin-top: 20px") Còn hàng
+            else
+              h5(style="margin-top: 20px") Hết hàng
+                          

@@ -1,0 +1,12 @@
+mixin rating(product)
+  .rating
+    - var fullStars = Math.floor(product.rating);
+    - var halfStar = product.rating % 1 !== 0;
+    - var emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+    each _ in [...Array(fullStars)]
+      i.fa.fa-star(style="color: gold;")
+    if halfStar
+      i.fa.fa-star-half-alt(style="color: gold;")
+    each _ in [...Array(emptyStars)]
+      i.fa.fa-star(style="color: lightgray;")
+    span(style="margin-left: 10px;") (#{product.reviews.length})

@@ -178,12 +178,27 @@ border-radius: 8px;
 }
 
  .inner-price-old {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: red;
   text-decoration: line-through;
 }
-
+.product-item .inner-onsale {
+  position: absolute;
+  top: 180px;
+  left: 30px;
+  background: red;
+  color: white;
+  font-size: 11px;
+  padding: 3px 9px 3px 5px;
+  border-radius: 6px 32px 32px 6px;
+  font-weight: 700;
+}
+.product-item .inner-onsale i {
+  font-size: 13px;
+  color: var(--yellow);
+  margin-right: 2px;
+}
  .inner-discount {
   font-size: 12px;
   font-weight: 600;
@@ -199,9 +214,11 @@ border-radius: 8px;
   color: white;
   background: #007bff; /* Màu nền xanh */
   display: inline-block;
-  padding: 3px 10px;
-  border-radius: 8px;
+  margin-bottom: 5px;
+  padding: 3px 5px;
+  border-radius: 7px;
 }
+
 
 
 .search-bar .form-inline {
@@ -272,7 +289,6 @@ a {
   margin-bottom: 20px;
 
 }
-
 /* end css cho home */
 /* CSS cho product */
 
@@ -311,3 +327,9 @@ a {
   color: #000;
 }
 /* end css cho about */
+/* css cho slide */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); /* Đảo ngược màu sắc của biểu tượng */
+}
+/* end css cho slide */

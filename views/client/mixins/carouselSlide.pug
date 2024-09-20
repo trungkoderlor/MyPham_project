@@ -1,0 +1,19 @@
+mixin carouselSlide(posters)
+  .carousel.slide#carouselExampleIndicators(data-ride="carousel" style="margin: 20px auto")
+          ol.carousel-indicators
+            each val, index in [0, 1, 2]
+              li(data-target="#carouselExampleIndicators" data-slide-to=index class=(index === 0 ? 'active' : ''))
+          .carousel-inner
+            each poster, index in posters
+              .carousel-item(class=(index === 0 ? 'active' : ''))
+                if (poster.src)
+                  img.d-block.w-100(src=poster.src alt=poster.alt)
+                else 
+                  img.d-block.w-100(src=poster alt=poster width="100%" )
+          if (posters.length > 1)
+            a.carousel-control-prev(href="#carouselExampleIndicators" role="button" data-slide="prev" )
+              span.carousel-control-prev-icon(aria-hidden="true")
+              span.sr-only Previous
+            a.carousel-control-next(href="#carouselExampleIndicators" role="button" data-slide="next")
+              span.carousel-control-next-icon(aria-hidden="true")
+              span.sr-only Next

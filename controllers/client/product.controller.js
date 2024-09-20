@@ -20,3 +20,14 @@ module.exports.index = async (req, res) => {
       keyword: req.query.keyword
   });
 }
+// [GET] /products/:slug
+module.exports.detail = async (req,res)=>{
+  const slug = req.params.slug;
+  
+  const product = await Product.findOne({slug:slug});
+  product.priceNew = (product.price*(100-product.discountPercentage)/100).toFixed(2);
+  res.render('client/pages/product/detail',{
+      pageTitle: product.title,
+      product: product
+  });
+}
