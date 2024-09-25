@@ -49,19 +49,11 @@ header.header
               a.dropdown-item(href="#" id="dropdownbrand")
                 img(src="/images/brand.png" alt="Thương hiệu" style="width: 20px; height: 20px; margin-right: 10px;")
                 | Thương hiệu
-              .dropdown-brand 
-                a.dropdown-item(href="#")
-                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
-                  | GUCCI
-                a.dropdown-item(href="#")
-                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
-                  | CHANEL 
-                a.dropdown-item(href="#")
-                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
-                  | DIOR
-                a.dropdown-item(href="#")
-                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
-                  | OLAY 
+              .dropdown-brand
+                each brand in brands 
+                  a.dropdown-item(href=`/brand/${brand.title}`)
+                    img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
+                    | #{brand.title}
               a.dropdown-item(href="#")
                 img(src="/images/woman.png" alt="Mỹ phẩm Nữ" style="width: 20px; height: 20px; margin-right: 10px;")
                 | Mỹ phẩm Nữ

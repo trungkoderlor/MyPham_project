@@ -1,27 +1,56 @@
 extends ../../layouts/default.pug
 include ../../mixins/carouselSlide.pug
 include ../../mixins/rating.pug
-block main 
- .container(style="margin-top: 20px; border: 1px solid #ddd; border-radius: 30px;padding-bottom: 20px;")
-    .row
-      .col-md-12
-        h4(style="margin-top: 20px") #{product.title}
-        .row
-          .col-md-6
-            +carouselSlide(product.images)
-          .col-md-6
-            .row
-              .price(style="margin: 20px 0 10px 0; font-size: 23px; font-weight: bold;") 
-                  span() Giá : #{product.priceNew}$
-                  span(style="color: red;text-decoration: line-through;margin-left:20px;") #{product.price}$
-              +rating(product) 
-              
-            h5(style="margin-top: 20px") Danh mục: 
-              each tag in product.tags
-                span.badge.badge-primary(style="margin-right: 5px") #{tag}          
-            
-            if (product.stock > 0)
-              h5(style="margin-top: 20px") Còn hàng
-            else
-              h5(style="margin-top: 20px") Hết hàng
-                          
+block main
+  .body(style="background-color:#f5f5f5")
+    .container(style="margin-top: 20px;padding-bottom: 20px;")
+      .row
+        .col-md-12
+          h4(style="margin-top: 20px") #{product.title}
+          .row
+            .col-md-6.border
+              +carouselSlide(product.images)
+            .col-md-1
+            .col-md-4
+              .row.border(style=" padding: 10px;")  
+                .price(style="margin: 10px 0 10px 0; font-size: 23px; font-weight: bold;") 
+                    span() Giá : #{product.priceNew}$
+                    span(style="color: red;text-decoration: line-through;margin-left:20px;") #{product.price}$
+                +rating(product) 
+              .row.border(style="margin-top: 20px")
+                h5.brand(style="margin-top: 20px") Thương hiệu 
+                h6 #{product.brand} 
+                h5(style="margin-top: 20px") Danh mục: 
+                  each tag in product.tags
+                    span.badge.badge-primary(style="margin-right: 5px") #{tag}           
+                h5(style="margin-top: 20px") Mô tả sản phẩm
+                p(style="margin-top: 10px") #{product.description}
+              .row.border(style="margin-top: 20px; padding-bottom: 20px;")
+                h5(style="margin-top: 20px") Tình trạng
+                if (product.stock > 0)
+                  h6(style="color:green;") Còn hàng
+                else
+                  h6(style="color: red;") Hết hàng 
+                .quantity.text-center(style="display: flex; margin-top: 10px;")
+                  h5(style="margin-top: 10px;margin-right:20px;") Số lượng:
+                  button.margin-auto(type="button" class="btn btn-outline-secondary btn-sm" id="decrease")
+                    i.fa.fa-minus   
+                  input#quantity.form-control.margin-auto.text-center(style="width: 80px;" readonly="readonly" value="1")
+                  button.margin-auto(type="button" class="btn btn-outline-secondary btn-sm" id="increase")
+                    i.fa.fa-plus
+                .col-md-6
+                  button#addToCart.btn.btn-primary(style="margin-top: 10px; width:100%") Thêm vào giỏ
+                .col-md-6
+                  button#buyNow.btn.btn-success(style="margin-top: 10px; width:100%") Mua ngay
+      .row.reviews 
+        .col-12
+          h5 Đánh giá của người dùng
+          h1 #{product.reviews.length} Đánh giá
+          each review in product.reviews
+            .review
+              h6 #{review.reviewerName} 
+              +rating(review)
+              p #{review.comment}
+              p #{review.created}
+
+                                  
