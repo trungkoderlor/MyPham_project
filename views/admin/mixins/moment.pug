@@ -1,0 +1,15 @@
+mixin formatDateTime(date)
+    - if(date)
+        span #{moment(date).format('DD/MM/YYYY HH:mm')}
+    - else
+        - return ''
+mixin formatDate(date)
+    - if(date)
+        span #{moment(date).format('DD/MM/YYYY')}
+    - else
+        - return ''
+mixin formatTime(date)
+    - if(date)
+        span #{moment(date).format('HH:mm')}
+    - else
+        - return ''

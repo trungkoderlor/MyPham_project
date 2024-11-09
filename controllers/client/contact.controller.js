@@ -1,9 +1,27 @@
 //[GET]/conact
-const Brand = require('../../models/brand.model');
+const Letter = require('../../models/letter.model');
 module.exports.index = async (req, res) => {
-    const brands= await Brand.find();
+
     res.render('client/pages/contact/index', {
-        brands: brands,
-        pageTitle: "Liên hệ"
+        pageTitle: "Liên hệ",
+        expressFlash:{
+            success: req.flash('success'),
+            error: req.flash('error')
+        }
     });
+}
+//[POST]/contact
+module.exports.PostLetter = async (req, res) => {
+    
+    const letter = new Letter(req.body);
+    try{
+        await letter.save();
+        req.flash('success', 'Gửi thành công');
+        res.redirect('/');
+    }
+    catch(err){
+        req.flash('error', 'Gửi thất bại');
+        res.redirect('/contact');
+    }
+    
 }

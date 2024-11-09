@@ -1,0 +1,199 @@
+/* General Styling */
+body {
+  background: linear-gradient(135deg, #333, #4ca1af); /* Dark to blue gradient background */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  font-size: 0.875rem; /* Smaller base font size */
+}
+
+.container {
+  padding: 1rem; /* Smaller padding */
+}
+
+/* Card Styling */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.card-header {
+  background-color: #b5d0d4;
+  color: #332929;
+  font-weight: 600; /* Slightly less bold */
+  padding: 0.75rem; /* Smaller padding */
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 1rem; /* Smaller padding */
+}
+
+.card:hover {
+  transform: translateY(-3px); /* Slightly less hover lift */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Avatar Image Styling */
+img {
+  border-radius: 50%;
+  border: 2px solid #4ca1af;
+  box-shadow: 0 4px 10px rgba(76, 161, 175, 0.3);
+  width: 40px; /* Smaller size */
+  height: 40px;
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  margin-bottom: 0.75rem; /* Reduced margin */
+  color: #333;
+  font-size: 0.875rem; /* Smaller font size for tables */
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(76, 161, 175, 0.1); /* Soft hover effect */
+}
+
+.table td {
+  padding: 0.5rem; /* Smaller padding */
+  vertical-align: middle;
+  border-top: 1px solid #ddd;
+}
+
+.table td:first-child {
+  font-weight: 500;
+  color: #555;
+}
+
+.table td:last-child {
+  font-weight: 400;
+  color: #333;
+}
+
+/* Badge Styling */
+.badge {
+  padding: 0.25em 0.75em; /* Smaller padding */
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.8rem; /* Smaller font size */
+}
+
+.badge-success {
+  background-color: #4ca1af;
+  color: #fff;
+}
+
+.badge-danger {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.badge:hover {
+  opacity: 0.85;
+}
+
+/* Status Styling */
+a[button-change-status] {
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500; /* Slightly lighter weight */
+}
+
+a.badge-success:hover, a.badge-danger:hover {
+  text-decoration: underline;
+}
+
+/* Statistic Cards */
+p {
+  font-size: 0.875rem; /* Smaller font size for paragraphs */
+  color: #333;
+  margin: 0.25rem 0; /* Reduced margin */
+}
+
+b {
+  color: #4ca1af;
+  font-weight: 600; /* Reduced boldness for smaller look */
+  font-size: 1rem; /* Smaller font size for bold elements */
+}
+/* noti */
+.noti-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(145deg, #ffffff, #e3f6f7);
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  color: #333;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.noti-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(181, 208, 212, 0.1), rgba(255, 255, 255, 0));
+  opacity: 0.5;
+  transform: rotate(45deg);
+  transition: opacity 0.3s ease;
+}
+
+.noti-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.noti-header {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #337b83;
+  margin-bottom: 15px;
+}
+
+.noti {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+  margin: 10px 0;
+}
+
+.noti span.highlight {
+  font-weight: 600;
+  color: #00596b;
+  background-color: rgba(181, 208, 212, 0.2);
+  padding: 3px 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.noti-container:hover span.highlight {
+  background-color: #b5d0d4;
+}
+
+.noti-container p {
+  margin: 0;
+  padding: 0 10px;
+}
+
+/* end noti */

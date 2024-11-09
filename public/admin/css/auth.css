@@ -1,0 +1,88 @@
+/* General Styling */
+body {
+  background: linear-gradient(135deg, #333, #4ca1af); /* Dark to blue gradient */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Card Styling */
+.card {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Soft gradient for the card */
+  border: none;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* Header Styling */
+h1 {
+  color: #333;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styling */
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #4ca1af;
+  box-shadow: 0 0 5px rgba(76, 161, 175, 0.4);
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(135deg, #4ca1af, #357a86); /* Modern gradient for the button */
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #357a86, #4ca1af);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional Styling for Alert */
+.alert-error {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 1px solid #e74c3c;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}

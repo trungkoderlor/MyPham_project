@@ -1,0 +1,122 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/moment.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if(role.permissions.includes('letter_view'))
+  
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000)  
+    .container
+      .row
+        +alert-success(expressFlash, 5000)
+        +alert-error(expressFlash, 5000)
+        .col-md-12
+          h1 Chi Tiết Liên Hệ
+          .card
+            .card-header
+              h3 #{letter.fullname}
+            .card-body
+              dl.row
+                dt.col-sm-3 Tên đầy đủ
+                dd.col-sm-9 #{user.fullname}
+                
+                dt.col-sm-3 Email
+                dd.col-sm-9 #{letter.email}
+                
+                dt.col-sm-3 Số điện thoại
+                dd.col-sm-9 #{letter.phone}
+
+                dt.col-sm-3 Trạng thái
+                dd.col-sm-9 
+                  if (letter.status=="unprocessed")
+                    a(
+                      href="javascript:" 
+                      class="badge  badge-danger"
+                      button-change-status 
+                      data-id=letter.id 
+                      data-status=letter.status                    
+                    ) Chưa xử lý
+                  else if (letter.status=="processed")
+                    a(
+                      href="javascript:" 
+                      class="badge badge-success"
+                      button-change-status 
+                      data-id=letter.id 
+                      data-status=letter.status
+                    ) Đã xử lý
+                  else 
+                    a(
+                      href="javascript:" 
+                      class="badge badge-warning"
+                      button-change-status 
+                      data-id=letter.id 
+                      data-status=letter.status
+                    ) Đang xử lý
+
+                dt.col-sm-3 Ngày gửi
+                dd.col-sm-9 
+                  +formatDateTime(letter.createdAt)
+
+                dt.col-sm-3 Nội dung liên hệ
+                dd.col-sm-9 #{letter.message}
+            if role.permissions.includes('letter_reply')
+              
+              .card-footer
+                if letter.status!=="processed"
+                  .reply-form
+                    h2 Phản hồi liên hệ
+                    form(
+                      action=""
+                      method="POST"
+                    )
+                      .form-group
+                        label(for="reply") Nội dung phản hồi
+                        textarea(
+                          class="form-control"
+                          id="reply"
+                          name="reply"
+                          rows="5"
+                        )
+                      button(
+                        type="submit"
+                        class="btn btn-primary ml-3 float-right"
+                      ) Gửi phản hồi
+                else
+                  .row
+                    .alert.alert-success
+                      | Liên hệ đã được xử lý
+                  if (letter.reply)
+                    .row
+                      .card 
+                        .card-header 
+                          h3.card-title Phản hồi
+                        .card-body
+                          .row
+                            h5 Nội dung phản hồi  
+                            .col-9
+                              p #{letter.reply.content}
+                            .col-3
+                              span.text-left(style="color : #8b8989") #{letter.reply.createdAt.toLocaleString()}
+  else
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ                 
+              
+
+                
+                  
+              
+            //- a(
+            //-   href="javascript:"
+            //-   class="btn btn-warning"
+            //-   button-change-status
+            //-   data-id=letter.id
+            //-   data-status=letter.status
+            //- ) Đổi trạng thái
+
+            

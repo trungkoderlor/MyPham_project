@@ -1,0 +1,128 @@
+/* General Styling for Forms */
+body {
+  background: linear-gradient(135deg, #333, #4ca1af); /* Dark to blue gradient background */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+}
+h1{
+  color: #cdf0f7 !important;
+}
+form {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.875rem; /* Smaller font size */
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border 0.3s;
+}
+
+input:focus {
+  border-color: #4ca1af;
+  outline: none;
+}
+
+/* File Upload Input */
+input[type="file"] {
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+  background-color: #4ca1af;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #357e8c;
+}
+
+/* Alerts */
+.success, .error {
+  margin-bottom: 1.25rem;
+  border-radius: 6px;
+}
+
+.alert {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  transition: opacity 0.3s;
+}
+
+.alert .close {
+  font-size: 1rem;
+  cursor: pointer;
+  padding-left: 0.5rem;
+  color: #333;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Heading */
+h1.mb-4 {
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Link styling */
+a.btn.btn-primary.btn-sm {
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+  background-color: #4ca1af;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+a.btn.btn-primary.btn-sm:hover {
+  background-color: #357e8c;
+}

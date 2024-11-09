@@ -1,0 +1,91 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/setting.css')
+block main
+  if (role.permissions.includes('setting-general_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    h1(class="mb-4") Cài Đặt Chung
+
+    form.mb-4(
+      action=`${prefixAdmin}/settings/general?_method=PATCH`
+      method="POST"
+      enctype="multipart/form-data"
+    )
+      div(class="form-group")
+        label(for="websiteName") Tên website
+        input(
+          type="text"
+          class="form-control"
+          id="websiteName"
+          name="websiteName"
+          value = settingGeneral.websiteName ? settingGeneral.websiteName : ''
+          required
+        )
+
+      div(class="form-group" upload-image)
+        label(for="logo") Logo
+        input(
+          type="file"
+          class="form-control"
+          id="logo"
+          name="logo"
+          upload-image-input
+          value = settingGeneral.logo ? settingGeneral.logo : ''
+        )
+        img(
+          src=`${settingGeneral.logo}`
+          upload-image-preview
+          class="image-preview"
+        )
+        button(
+          type="button"
+          class = 'btn btn-danger btn-sm cancel-image-button-d'
+          cancel-image-button
+          style = "margin-top: 32px;margin-left: 10px;"
+        ) Hủy
+      div(class="form-group")
+        label(for="phone") Số điện thoại
+        input(
+          type="text"
+          class="form-control"
+          id="phone"
+          name="phone"
+          value = settingGeneral.phone ? settingGeneral.phone : ''
+          required
+        )
+      div(class="form-group")
+      label(for="email") Email
+      input(
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        value = settingGeneral.email ? settingGeneral.email : ''
+        required
+      )
+      div(class="form-group")
+        label(for="coppyright") Coppyright
+        input(
+          type="text"
+          class="form-control"
+          id="coppyright"
+          name="coppyright"
+          value  = settingGeneral.coppyright ? settingGeneral.coppyright : ''
+          required
+        )
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-primary"
+        ) Cập nhật
+  else 
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ 
+
+        

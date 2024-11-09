@@ -1,0 +1,106 @@
+extends ../../layouts/default.pug
+include ../../mixins/fillter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
+include ../../mixins/sort.pug
+include ../../mixins/table-tree.pug
+include ../../mixins/filter-date.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if(role.permissions.includes('order_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    h1 Danh Sách Đơn Hàng
+    .row
+      .col-md-12
+        .card.mb-3
+          .card-header Bộ Lọc và Tìm Kiếm
+          .card-body
+            .row
+              .col-6
+                +fillter-status(fillterStatus)
+              .col-6
+                +search(keywords)
+            .row.mt-4
+              .col-2
+              .col-8
+                +filterDate()
+              .col-2
+        .card
+          .card-header
+            .row
+              .col-6
+                .card-title Danh Sách Đơn Hàng
+          .card-body
+            if orders.length > 0
+              table.table.table-hover.table-sm
+                thead
+                  tr
+                    th STT
+                    th Khách Hàng
+                    th Danh Sách Sản Phẩm
+                    th Trạng Thái
+                    th Tổng Tiền
+                    th Ngày Đặt
+                    th Hành Động
+                tbody
+                  each order, index in orders
+                    tr
+                      td= index + 1
+                      td.userInfo
+                        p #{order.userInfo.name}
+                      td.list-products
+                        ul
+                          each product in order.products
+                            li(style="list-style-type:A ;")
+                              p  #{product.productInfo.title}
+                      td 
+                        if (order.status=="pending")
+                          a(
+                            href="javascript:" 
+                            class="badge  badge-secondary"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status                    
+                          ) Chờ Gửi Hàng
+                        else if (order.status=="shipping")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-warning"
+                            button-change-status 
+                            data-id=useorderr.id 
+                            data-status=order.status
+                          ) Đang Giao Hàng
+                        else if(order.status=="completed")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-success"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status
+                          ) Đã Hoàn Thành
+                        else 
+                          a(
+                            href="javascript:" 
+                            class="badge badge-danger"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status
+                          ) Đã Hủy
+                      td #{order.totalPrice}$
+                      td= order.createdAt.toLocaleString()
+                      td.action-buttons
+                        a.btn.btn-sm.btn-info(href=`/admin/orders/detail/${order._id}`) 
+                          i.fas.fa-eye.mr-1
+            else
+              p Không có dữ liệu
+  else 
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ 

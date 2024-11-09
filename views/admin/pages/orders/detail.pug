@@ -1,0 +1,109 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if(role.permissions.includes('order_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    .row
+      .col-md-12
+        .card.mb-3
+          .card-header
+            h3.card-title Chi Tiết Đơn Hàng
+          .card-body
+            .row
+              .col-md-6
+                .card.mb-3
+                  .card-header
+                    h3.card-title Thông Tin Khách Hàng
+                  .card-body.userInfo
+                    p
+                      strong Tên Khách Hàng:
+                      |  #{order.userInfo.name}
+                    p
+                      strong Email:
+                      |  #{order.userInfo.email}
+                    p
+                      strong Địa Chỉ:
+                      |  #{order.userInfo.address}
+                    p
+                      strong Số Điện Thoại:
+                      |  #{order.userInfo.phone}
+              .col-md-6
+                .card.mb-3
+                  .card-header
+                    h3.card-title Thông Tin Đơn Hàng
+                  .card-body.orderInfo
+                    p
+                      strong Tổng Tiền:
+                      |  #{order.totalPrice}$
+                    p
+                      strong Ngày Đặt:
+                      |  #{order.createdAt.toLocaleString()}
+                    p
+                      strong Trạng Thái:
+                        if (order.status=="pending")
+                          a(
+                            href="javascript:" 
+                            class="badge  badge-secondary"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status                    
+                          ) Chờ Gửi Hàng
+                        else if (order.status=="shipping")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-warning"
+                            button-change-status 
+                            data-id=useorderr.id 
+                            data-status=order.status
+                          ) Đang Giao Hàng
+                        else if (order.status=="completed")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-success"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status
+                          ) Đã Hoàn Thành
+                        else 
+                          a(
+                            href="javascript:" 
+                            class="badge badge-danger"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status
+                          ) Đã Hủy
+            .card.mb-3
+              .card-header
+                h3.card-title Danh Sách Sản Phẩm
+              .card-body.orderProducts
+                if order.products.length
+                  table.table.table-hover.table-sm.table-product
+                    thead
+                      tr
+                        th STT
+                        th Tên Sản Phẩm
+                        th Số Lượng
+                        th Giá
+
+                        th Giảm Giá
+
+                    tbody
+                      each product, index in order.products
+                        tr.orderProduct
+                          td= index + 1
+                          td #{product.productInfo.title}
+                          td #{product.quantity}
+                          td #{product.price}$
+                          td #{product.discountPercentage}%
+                else
+                  p No products found.
+  else
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ 

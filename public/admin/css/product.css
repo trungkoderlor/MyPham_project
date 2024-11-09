@@ -1,0 +1,154 @@
+/* General Page Styling */
+body {
+  background: linear-gradient(135deg, #333, #4ca1af); /* Dark to blue gradient background */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+}
+h1{
+  color: #cdf0f7;
+}
+.container {
+  padding: 1rem; /* Reduced padding */
+}
+
+/* Card Styling */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Softer shadow */
+  overflow: hidden;
+  margin-bottom: 1rem; /* Reduced margin */
+  font-size: 0.9rem; /* Reduced font size */
+}
+
+.card-header {
+  background-color: #4ca1af;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem; /* Reduced padding */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  padding: 1rem; /* Reduced padding */
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Slightly reduced shadow on hover */
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  margin-top: 0.75rem; /* Reduced margin */
+  color: #333;
+  border-collapse: collapse;
+  font-size: 0.85rem; /* Smaller font size */
+  
+}
+
+.table th, .table td {
+  padding: 0.5rem; /* Reduced padding */
+  text-align: left;
+  border-top: 1px solid #ddd;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(76, 161, 175, 0.08); /* Lighter hover effect */
+}
+
+.table th {
+  font-weight: 500;
+  color: #555;
+}
+
+.table td img {
+  border-radius: 6px;
+}
+
+/* Badge Styling */
+.badge-success, .badge-danger {
+  font-size: 0.75rem; /* Smaller font size */
+  padding: 0.2rem 0.6rem; /* Reduced padding */
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.badge-success {
+  background-color: #4ca1af;
+  color: #fff;
+}
+
+.badge-danger {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.badge:hover {
+  opacity: 0.9;
+}
+
+/* Button Styling */
+.btn {
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem; /* Reduced padding */
+  font-size: 0.85rem; /* Smaller font size */
+}
+
+.btn-outline-success {
+  color: #192021;
+    border-color: #0c2428;
+}
+
+
+
+.btn-secondary, .btn-warning, .btn-danger {
+  color: #fff;
+}
+
+.btn-secondary:hover, .btn-warning:hover, .btn-danger:hover {
+  opacity: 0.9;
+}
+
+/* Trash Button Styling */
+a.trash {
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 0.4rem; /* Reduced padding */
+  font-size: 1.2rem; /* Smaller icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a.trash:hover {
+  background-color: rgba(76, 161, 175, 0.08); /* Lighter hover effect */
+}
+
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem; /* Reduced margin */
+}
+
+.pagination a, .pagination button {
+  color: #4ca1af;
+  padding: 0.4rem 0.6rem; /* Reduced padding */
+  margin: 0 0.2rem;
+  font-size: 0.8rem; /* Smaller font size */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.pagination a:hover, .pagination button:hover {
+  background-color: #4ca1af;
+  color: #fff;
+  border-radius: 6px;
+}

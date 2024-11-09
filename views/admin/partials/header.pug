@@ -1,0 +1,17 @@
+
+header.header
+    .row(style="height: 100%")
+      .col-6
+        .header__left.ml-5
+          a(href=`${prefixAdmin}/dashboard`) ADMIN
+      .col-6
+        .header__right.float-right
+          .account
+            <i class="fa-solid fa-user-secret mr-2"></i>
+            .account__name #{user.fullname}
+            .dropdown
+              ul
+                li
+                  a(href=`${prefixAdmin}/my-account`) Thông tin chi tiết
+                li
+                  a(href=`${prefixAdmin}/auth/logout`) Logout

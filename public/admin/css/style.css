@@ -1,0 +1,642 @@
+/* Header */
+.header {
+    position: sticky;
+    top: 0;
+    padding: 10px 5px 10px 20px;
+    background-color: #333;
+    color: #fff;
+    z-index: 999;
+    height: 56px;
+  }
+  
+  .header__left a {
+    color: #fff;
+    font-weight: bold;
+    font-size:24px ;
+    text-decoration: none;
+  }
+  
+
+  
+  .account {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size:1rem !important;
+  }
+  
+  .account__name {
+    margin-right: 8px;
+  }
+  
+  .icon-down {
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+  }
+  
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 70%;
+    right: 0;
+    background-color: #444;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 999;
+  }
+  
+  .account:hover .dropdown {
+    display: block;
+  }
+  
+  .dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown li {
+    border-bottom: 1px solid #555;
+  }
+  
+  .dropdown li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .dropdown li a:hover {
+    background-color: #555;
+  }
+  
+/* End Header */
+
+/* Body */
+/* Sidebar styling */
+.sider {
+  transition: transform 0.3s ease; /* Hiệu ứng trượt */
+  transform: translateX(-250px); /* Ẩn sidebar ban đầu */
+}
+
+.sider.active {
+  transform: translateX(0); /* Hiện sidebar khi có class active */
+}
+
+/* Sidebar toggle button styling */
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  z-index: 1000;
+}
+.body .sider {
+    width: 210px;
+    background: #323232;
+    color: #fff;
+    height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+    font-size: 14px !important;
+}
+.row{
+    margin:0;
+}
+.body .main {
+    margin-left : 15px !important;
+    position: relative;
+    left :210px;
+    width: calc(95% - 180px);
+    margin: 0px;
+}
+/* Sidebar inner menu */
+.sider .inner-menu {
+  padding-top: 0.5rem; /* Giảm khoảng cách bên trên */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar links */
+.sider .inner-menu ul li {
+  padding: 0.5rem 0.75rem; /* Giảm padding */
+}
+.sider .inner-menu ul{
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sider .inner-menu ul li a {
+  display: flex;
+  align-items: center;
+  color: #ddd;
+  text-decoration: none;
+  
+  font-size: 0.85rem; /* Giảm kích thước chữ */
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+}
+.sider .inner-menu ul li:hover {
+  background-color: #4ca1af; /* Nền khi hover */
+  border-radius: 4px;
+  color: #000000;
+}
+.sider .inner-menu ul li a:hover{
+  color: #000000;
+}
+
+/* Sidebar icons */
+.sider .inner-menu ul li a i {
+  font-size: 1rem; /* Giảm kích thước biểu tượng */
+  width: 25px;
+  margin-right: 0.4rem; /* Giảm khoảng cách giữa icon và text */
+  color: #4ca1af;
+  transition: color 0.3s;
+}
+
+.sider .inner-menu ul li a:hover i {
+  color: #232222; /* Màu biểu tượng khi hover */
+}
+
+/* Sidebar toggle button styling */
+.sidebar-toggle {
+  position: fixed;
+  top: 0.7rem;
+  left: 1rem;
+  z-index: 1000;
+  background-color: #4ca1af;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem; /* Giảm kích thước nút */
+  transition: background-color 0.3s;
+}
+
+.sidebar-toggle:hover {
+  background-color: #357e8c;
+}
+.btn {
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem; /* Reduced padding */
+  font-size: 0.85rem; /* Smaller font size */
+}
+/* Footer Admin Styling */
+.footer {
+  background: #333; /* Màu nền tối cho footer */
+  color: #ddd;
+  padding: 1.5rem 0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #4ca1af;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-icon {
+  color: #ddd;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #4ca1af;
+}
+
+.footer-copyright {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+.footer{
+  background-color: #323232;
+}
+/* end footer */
+/* Show Alert */
+/* Alert container */
+.success, .error {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  max-width: 300px;
+  z-index: 1050;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease, fadeOut 0.3s ease 3.5s; /* Animation khi hiển thị và tự động ẩn sau 3.5s */
+}
+
+/* Success alert */
+.alert-success {
+  background-color: #4ca1af;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-left: 4px solid #357e8c;
+}
+
+/* Error alert */
+.alert-danger {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  border-left: 4px solid #c0392b;
+}
+
+/* Close button */
+.close {
+  margin-left: auto;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.close:hover {
+  color: #ddd;
+}
+
+/* Fade in and fade out animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+} */
+
+[show-alert] {
+    position: fixed;
+    top: 55px;
+    right: 15px;
+    z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+    animation-name: alert-hidden;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+
+@keyframes alert-hidden {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* end show alert*/
+/*image preview*/
+.image-preview {
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border:1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+.image-preview[src=""]{
+    display: none;
+}
+/* End Image preview*/
+/* Cancel image button */
+.cancel-image-button-d{
+    display:none;
+}
+
+
+.userInfo {
+  margin-bottom: 20px;
+}
+
+.userInfo p {
+  margin: 0;
+  padding: 5px 0;
+}
+.list-products li {
+    margin-bottom: 10px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+/* trash*/
+.trash {
+    cursor: pointer;
+}
+.trash:hover {
+    color: #ff0000;
+    background-color: #fff;
+}
+/* trash */
+
+/* Sort Filter */
+.sort-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.sort-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.sort-select {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.sort-clear-btn {
+    align-self: flex-start;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.sort-clear-btn:hover {
+    background-color: #c82333;
+}
+/* End Sort Filter */
+
+/* Product Detail Page */
+/* General Reset */
+
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Container Styling */
+.product-detail {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-detail:hover {
+  transform: scale(1.005);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Title Styling */
+.product-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a202c;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Thumbnail Styling */
+.product-thumbnail img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 6px;
+  margin: 0 auto 16px;
+  display: block;
+  transition: box-shadow 0.3s;
+}
+
+.product-thumbnail img:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Meta Info Styling */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.product-meta div {
+  padding: 6px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.product-meta b {
+  color: #0073e6;
+}
+
+.product-meta div:last-child {
+  border-bottom: none;
+}
+
+
+
+/* Description Styling */
+.product-description {
+  margin-top: 18px;
+  line-height: 1.5;
+}
+
+.product-description h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.product-description p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Button Styling */
+.btn-detail {
+  background-color: #ff9900;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  display: inline-block;
+  margin-top: 12px;
+  transition: background-color 0.2s;
+}
+
+.btn-detail:hover {
+  background-color: #e08b00;
+}
+
+/* Update List Styling */
+ul.update-list {
+  list-style: none;
+  padding-left: 16px;
+}
+
+ul.update-list li {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+  padding: 4px 0;
+  position: relative;
+}
+
+ul.update-list li::before {
+  content: '•';
+  color: #0073e6;
+  position: absolute;
+  left: -10px;
+  font-size: 1rem;
+}
+
+/* End Product Detail Page */
+
+/* Account Detail Page */
+.account-detail {
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.account-header h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.account-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-edit:hover {
+  background-color: #0056b3;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.info-item .label {
+  font-weight: bold;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.info-item .value {
+  color: #333;
+  font-size: 0.85rem;
+}
+
+.account-avatar {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.account-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+
+.account-actions a:hover {
+  color: #0b0b0b;
+  text-decoration: none;
+}
+
+/* End Account Detail Page */
+.card-header {
+  background-color: #b5d0d4 !important;
+  color: #332929 !important;
+} 
+
+          

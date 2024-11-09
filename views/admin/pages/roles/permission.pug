@@ -1,0 +1,268 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if (role.permissions.includes('role_permission')) 
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    h1(class=" mt-4") Phân Quyền 
+    if (records) 
+      div(data-records=records)
+      div(class="text-right")
+        button(type="submit" class="btn btn-primary mb-2" button-submit) Cập nhật
+      .card.mb-3 
+        .card-header Bảng Phân Quyền
+        .card-body
+          table(class="table table-hover table-sm" table-permissions)
+            thead
+              tr
+                th Tính năng
+                each item in records
+                  th(class="text-center") #{item.title}
+            tbody
+              tr(data-name="id")
+                each item in records
+                  td(class="text-center d-none" )
+                    input(type="text" value=`${item.id}` )
+              //-danh mục sản phẩm
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Danh mục sản phẩm
+              tr(data-name="category_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+                
+              tr(data-name="category_create")
+                td Thêm mới
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              tr(data-name="category_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              tr(data-name="category_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="category_trash")
+                td Thùng rác
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              //-sản phẩm
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Sản phẩm
+              tr(data-name="product_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+                
+              tr(data-name="product_create")
+                td Thêm mới
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              tr(data-name="product_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              tr(data-name="product_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="product_trash")
+                td Thùng rác
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              //-đơn hàng
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Đơn hàng
+              tr(data-name="order_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="order_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="order_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              
+              //-liên hệ
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Liên hệ
+              tr(data-name="letter_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="letter_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="letter_reply")
+                td Phản hồi
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="letter_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="letter_trash")
+                td Thùng rác
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              //-người dùng quản trị
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Người dùng quản trị 
+              tr(data-name="account_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="account_create")
+                td Thêm mới
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="account_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="account_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="account_trash")
+                td Thùng rác
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              //- nhóm người dùng
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Người dùng khách hàng
+              tr(data-name="user_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="user_create")
+                td Thêm mới
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="user_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
+              tr(data-name="user_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="user_trash")
+                td Thùng rác
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              //- cài đặt chung
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Cài đặt chung
+              tr(data-name="setting-general_view")
+                td Xem và Cập nhật
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              //-nhóm quyền
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Nhóm quyền
+              tr(data-name="role_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+                
+              tr(data-name="role_create")
+                td Thêm mới
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              tr(data-name="role_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+
+              tr(data-name="role_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="role_permission")
+                td Phân quyền
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+    form(
+      id="form-change-permissions"
+      action=`${prefixAdmin}/roles/permissions?_method=PATCH` 
+      method="POST"
+      class="d-none"
+    )
+      div(class="form-group")
+        input(
+          type="text"
+          class="form-control"
+          name="permissions"
+        ) 
+    script(src="/admin/js/role.js")
+  else 
+    h1 Bạn không có quyền truy cập trang này

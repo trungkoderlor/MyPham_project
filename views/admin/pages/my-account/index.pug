@@ -1,0 +1,56 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/fillter-status.pug
+include ../../mixins/search.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000)
+    .account-detail
+      .account-header
+        h1 Chi Tiết Tài Khoản
+        .account-actions
+          a.btn-edit(href=`${prefixAdmin}/accounts/edit/${user.id}`) Edit
+      .account-info
+        .account-avatar
+          img(src=user.avatar alt="Avatar")
+        .info-item
+          span.label Tên đầy đủ:
+          span.value #{user.fullname}
+        .info-item
+          span.label Email:
+          span.value #{user.email}
+        .info-item
+          span.label Số điện thoại:
+          span.value #{user.phone}
+        .info-item
+          span.label Vai trò:
+          span.value #{role.title}
+        .info-item
+          span.label Trạng thái:
+          span.value 
+            if (user.status=="active")
+              a(
+                href="javascript:" 
+                class="badge badge-success"
+                button-change-status 
+                data-id=user.id 
+                data-status=user.status                    
+              ) Hoạt động
+            else 
+              a(
+                href="javascript:" 
+                class="badge badge-danger"
+                button-change-status 
+                data-id=user.id   
+                data-status=user.status
+              ) Không hoạt động
+        .info-item
+          span.label Ngày tạo:
+          span.value #{user.createdAt.toLocaleString()}
+        .info-item
+          span.label Ngày cập nhật:
+          span.value #{user.updatedAt.toLocaleString()}
+      

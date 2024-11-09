@@ -3,40 +3,67 @@ include ../../mixins/rating.pug
 block main
     .container(style="margin-top: 20px; border: 1px solid #ddd; border-radius: 30px; padding-bottom: 20px;")
       .row
-        .col-md-12
-          br
-          h1.text-center Products
+          .col-md-12
+            br
+            h1.text-center Products
+      .row
+        .col-md-3
+          .filter-section
+            h2 Bộ lọc
+            form(action="/products" method="GET")
+              .form-group
+                label(for="category") Danh mục
+                select.form-control(name="category" id="category")
+                  option(value="") Tất cả
+                  each category in categories
+                    option(value=category._id)= category.title
+              .form-group
+                label(for="price") Giá
+                select.form-control(name="price" id="price")
+                  option(value="") Tất cả
+                  option(value="0-50") 0 - 50$
+                  option(value="50-100") 50 - 100$
+                  option(value="100-200") 100 - 200$
+                  option(value="200-500") 200 - 500$
+                  option(value="500") Trên 500$
+              .form-group
+                label(for="rating") Đánh giá
+                select.form-control(name="rating" id="rating")
+                  option(value="") Tất cả
+                  option(value="1") 1 sao
+                  option(value="2") 2 sao
+                  option(value="3") 3 sao
+                  option(value="4") 4 sao
+                  option(value="5") 5 sao
+              button.btn.btn-primary(type="submit") Áp dụng
+        .col-md-9
+          .row
+            each item in products
+              .col-6.col-md-4.col-lg-3
+                .product-item
+                  .inner-image
+                    img(
+                      src=item.thumbnail 
+                      alt=item.title
+                    )
+                    span(class="inner-onsale") 
+                      i(class="fa-solid fa-bolt")
+                      | Giảm #{item.discountPercentage}%
+                  .inner-content
+                    h3.inner-title
+                      a(href=`/products/${item.slug}`) #{item.title}
+                      if item.title.length < 18 
+                        .break(style="height:20px")
+
+                    .inner-price
+                      .row 
+                        .col-6.text-center
+                          span.inner-price-new #{item.priceNew}$
+                        .col-6.text-center
+                          span.inner-price-old #{item.price}$            
+                      .row.text-center(style="margin-top: 10px") 
+                        +rating(item)
+
         
-      
-      br
-      .row  
-        each item in products
-          .col-6.col-md-4.col-lg-3
-            .product-item
-              .inner-image
-                img(
-                  src=item.thumbnail 
-                  alt=item.title
-                )
-                
-              .inner-content
-                span(class="inner-onsale") 
-                  i(class="fa-solid fa-bolt")
-                  | Giảm 6%
-                h3.inner-title
-                  a(href=`/products/${item.slug}`) #{item.title}
-                  if item.title.length < 20 
-                    .break(style="height:20px")
-
-                .inner-price
-                  .row 
-                    .col-6.text-center
-                      span.inner-price-new #{item.priceNew}$
-                    .col-6.text-center
-                      span.inner-price-old #{item.price}$            
-                  .row.text-center(style="margin-top: 10px") 
-                    +rating(item)
-
-      
-                    
-                    
+                      
+                      

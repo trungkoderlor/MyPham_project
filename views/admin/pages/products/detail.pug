@@ -1,0 +1,66 @@
+extends ../../layouts/default.pug
+include ../../mixins/moment.pug
+include ../../mixins/alert.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  +alert-error(expressFlash,5000)
+  +alert-success(expressFlash,5000) 
+  .product-detail
+    if (product.title)
+      h1.product-title #{product.title}
+    
+    .product-info
+      if (product.thumbnail)
+        .product-thumbnail
+          img(src=product.thumbnail alt=product.title)
+      
+      .product-meta
+        if (product.price)
+          div Giá: <b>#{product.price}$</b>
+        
+        if (product.discountPercentage)
+          div Giảm giá: <b>#{product.discountPercentage}%</b>
+        
+        if (product.stock)
+          div Còn lại: <b>#{product.stock}</b>
+        
+        if (product.status)
+          div
+            span Trạng thái: 
+            if (product.status == "active")
+              span.badge.badge-success Hoạt động
+            else 
+              span.badge.badge-danger Dừng hoạt động
+        
+        if (product.position)
+          div Vị trí: <b>#{product.position}</b>
+        
+        if (product.createdBy)
+          div
+            if (product.accountName) 
+              span Người tạo: <b>#{product.accountName}</b>
+            span - Tạo vào lúc: <b> 
+              +formatDateTime(product.createdBy.createdAt)
+              </b>
+        
+        if (product.updatedBy && product.updatedBy.length > 0)
+          div
+            span - Lịch sử cập nhật:
+            ul.update-list
+              each update in product.updatedBy
+                li
+                  span Người cập nhật: <b>#{product.accountUpdateName}</b>
+                  span vào lúc: <b>
+                    +formatDateTime(update.updatedAt)
+                  </b>
+    
+    if (product.description)
+      .product-description
+        h2 Mô tả
+        p #{product.description}
+    
+    a.btn.btn-warning.btn-sm.btn-detail(href=`${prefixAdmin}/products/edit/${product.id}`) Sửa
+
+  script(src="/admin/js/product.js")
+

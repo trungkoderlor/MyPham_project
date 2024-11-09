@@ -1,0 +1,111 @@
+/* General Styling */
+body {
+  background: #f4f6f9;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+/* Card Styling */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+  max-width: 700px;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-body dl.row {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.card-body dl.row dt {
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.card-body dl.row dd {
+  font-weight: 400;
+  color: #333;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar Image Styling */
+img.rounded-circle {
+  border: 3px solid #007bff;
+  width: 80px;
+  height: 80px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge Styling */
+.badge-pill {
+  padding: 0.4em 0.9em;
+  font-size: 0.75rem;
+  border-radius: 50px;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Additional Utilities */
+.text-muted {
+  color: #6c757d;
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .card-body dl.row dt, .card-body dl.row dd {
+    font-size: 0.85rem;
+  }
+}

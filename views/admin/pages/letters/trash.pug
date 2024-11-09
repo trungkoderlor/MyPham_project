@@ -1,0 +1,104 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/moment.pug
+include ../../mixins/fillter-status.pug
+include ../../mixins/search.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+
+  if(role.permissions.includes('letter_trash'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000)  
+      
+    h1(class="mb-4") Danh Sách Liên Hệ Của Khách Hàng Đã Xóa
+    script(src="/admin/js/product.js")
+    .card.mb-3
+      .card-header 
+        .row
+          .col-12
+            i.fas.fa-table.mr-1
+            | Danh sách liên hệ khách hàng đã xóa
+        .row.mt-4(style="padding-top:15px;border-top: 1px solid #ccc;")
+            .col-6
+              +search(keywords)
+      .card-body
+        .row 
+          .col-md-12
+            +alert-success(expressFlash, 5000)
+            +alert-error(expressFlash, 5000)
+            if (letters.length > 0)
+              table#dataTable(class="table table-sm table-hover" width="100%" cellspacing="0")
+                thead
+                  tr
+                    th STT
+                    th Họ Và Tên
+                    th Email
+                    th Số Điện Thoại
+                    th Ngày gửi
+                    th Người Xóa
+                    th Ngày Xóa
+                    th Thao Tác
+                tbody
+                  each letter,index in letters
+                    tr
+                      td= index + 1
+                      td= letter.fullname
+                      
+                      
+                      td= letter.email
+                      td= letter.phone
+      
+                        
+                      td
+                        +formatDate(letter.createdAt) 
+                      td #{letter.accountName}
+                      td 
+                        +formatDate(letter.deletedBy.deletedAt)
+                      td 
+                        a(
+                          class = 'btn btn-secondary btn-sm ml-1'
+                          href=`${prefixAdmin}/letters/detail/${letter.id}`
+                        )
+                          i.fas.fa-eye.mr-1
+                        button(
+                          class = 'btn btn-success btn-sm ml-1'
+                          button-restore
+                          data-id=letter.id
+                        ) 
+                          i.fas.fa-trash-restore-alt.mr-1
+                        button(
+                          class = 'btn btn-danger btn-sm ml-1'
+                          button-delete
+                          data-id=letter.id
+                        ) 
+                          i.fas.fa-trash-alt.mr-1
+            else 
+              p Không có dữ liệu   
+    if (role.permissions.includes('letter_edit'))
+      form(
+          action="" 
+          method="POST"
+          id="formChangeStatus"
+          path=`${prefixAdmin}/letters/change-status`
+          )
+    form(
+          action="" 
+          method="POST"
+          id="formDeleteItem"
+          path=`${prefixAdmin}/letters/trash/delete`
+          )  
+    form(
+          action="" 
+          method="POST"
+          id="formRestoreItem"
+          path=`${prefixAdmin}/letters/trash/restore`
+          )  
+  else 
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ 

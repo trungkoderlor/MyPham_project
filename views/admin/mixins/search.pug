@@ -1,0 +1,15 @@
+mixin search(keywords) 
+    form(id="form-search")
+        .input-group
+            input(
+                type="text"
+                class="form-control"
+                placeholder="Nhập từ khóa"
+                name="keyword"
+                value = keywords
+            )
+            .input-group-append
+                button(
+                    class="btn btn-success"
+                    type="submit"
+                ) Tìm 

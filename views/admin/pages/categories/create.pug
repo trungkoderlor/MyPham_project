@@ -1,0 +1,113 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/form.css')
+block main
+    if(role.permissions.includes('category_create'))
+        +alert-error(expressFlash,5000)
+        +alert-success(expressFlash,5000)    
+        h1(class="mb-4") Thêm Mới Danh Mục Sản Phẩm
+        form.mb-4(
+            action=`${prefixAdmin}/categories/create`
+            id="form-create-procategoriesduct"
+            method="POST"
+            enctype="multipart/form-data"
+        )
+            div(class="form-group")
+                label(for="title") Tiêu đề
+                input(
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    name="title"
+                    required
+                )
+            div(class="form-group")
+                label(for="parent_id") Danh Mục Cha
+                select(
+                    class="form-control"
+                    id="parent_id"
+                    name="parent_id"
+                )
+                    option(value="") Danh Mục Gốc
+                    +select-tree(records)
+            div(class="form-group" )
+                label(for="desc") Mô tả
+                textarea(
+                    class="form-control textarea-mce"
+                    id="desc"
+                    name="description"
+                    rows="5"
+                )
+            div(class="form-group"
+                upload-image
+                )
+                
+                label(for="thumbnail") Ảnh
+                input(
+                    type="file"
+                    class="form-control-file"
+                    id="thumbnail"
+                    name="thumbnail"     
+                    accept="image/*" 
+                    upload-image-input          
+                        )
+                img(
+                    src=""
+                    upload-image-preview
+                    class="image-preview"
+                )
+                button(
+                    type="button"
+                    class = 'btn btn-danger btn-sm cancel-image-button-d'
+                    cancel-image-button
+                    style = "margin-top: 32px;margin-left: 10px;"
+                ) Hủy
+            div(class="form-group")
+                label(for="stock") Vị trí
+                input(
+                    type="number"
+                    class="form-control"
+                    id="position"
+                    name="position"
+                    placeholder="Tự động tăng"
+                    min="1"
+                )
+                button(
+                    type="button"
+                    class = 'btn btn-danger btn-sm cancel-image-button-d'
+                    cancel-image-button
+                    style = "margin-top: 32px;margin-left: 10px;"
+                ) Hủy       
+            div(class="form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="statusActive"
+                    name="status"
+                    value="active"
+                    checked
+                )
+            
+                label(for="statusActive" class="form-check-label") Hoạt động
+            div(class="form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="statusActive"
+                    name="status"
+                    value="inactive"
+                    checked
+                )
+                label(for="statusActive" class="form-check-label") Dừng hoạt động
+            div(class="form-group")
+                button(
+                    type="submit"
+                    class="btn btn-primary"
+                ) Tạo Mới
+
+
+        script(src="/admin/js/product.js")
+    else 
+        h1 Bạn không có quyền truy cập trang này

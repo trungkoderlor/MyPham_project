@@ -1,0 +1,38 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/fillter-status.pug
+include ../../mixins/search.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if(role.permissions.includes('user_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    .account-detail
+      .account-header
+        h1 User Details
+        .account-actions
+          button.btn-edit Edit
+          button.btn-delete Delete
+      .account-info
+        .info-item
+          .label Full Name:
+          .value #{user.fullname}
+        .info-item
+          .label Email:
+          .value #{user.email}
+        .info-item
+          .label Phone:
+          .value #{user.phone}
+        .info-item
+          .label Status:
+          .value #{user.status}
+        .info-item
+          .label Created At:
+          .value #{user.createdAt}
+        .info-item
+          .label Updated At:
+          .value #{user.updatedAt}
+      .account-avatar
+        img(src=user.avatar alt="User Avatar")

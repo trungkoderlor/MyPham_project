@@ -1,0 +1,12 @@
+mixin filterDate()
+  form(method="GET", action="")
+    .row
+      .col-md-4
+        label(for="startDate") Từ ngày:
+        input#startDate.form-control(type="date", name="startDate", value=startDate)
+      .col-md-4
+        label(for="endDate") Đến ngày:
+        input#endDate.form-control(type="date", name="endDate", value=endDate)
+      .col-md-4
+        label(for="filter" style="display:block") &nbsp;
+        button#filter.btn.btn-primary(type="submit") Lọc

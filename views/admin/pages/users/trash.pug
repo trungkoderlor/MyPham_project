@@ -1,0 +1,118 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/fillter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/moment.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if(role.permissions.includes('user_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    script(src="/admin/js/product.js") 
+    h1(class="mb-4") Danh Sách Tài Khoản Người Dùng Đã Xóa
+    .card.mb-3
+      .card-header 
+        .row
+          .col-6
+            i.fas.fa-table.mr-1
+            | Danh sách tài khoản
+          .row.mt-4(style="padding-top:15px;border-top: 1px solid #ccc;")
+            .col-5
+              +fillter-status(fillterStatus) 
+            .col-6
+              +search(keywords)
+      .card-body
+        .row 
+          .col-md-12
+            
+            if (records.length > 0)
+              table#dataTable(class="table table-sm table-hover" width="100%" cellspacing="0")
+                thead
+                  tr
+                    th STT
+                    th Avatar
+                    th Tên
+                    
+                    th Email
+                    th Trạng Thái
+                    th Người Xóa
+                    th Ngày Xóa
+                    th Thao Tác
+                tbody
+                  each user,index in records
+                    tr
+                      td= index + 1
+                      td 
+                        img(src=user.avatar, alt='Avatar', width='50px', height='50px')
+                      td= user.fullname
+                      
+                      
+                      td= user.email
+                      td 
+                        if (user.status=="active")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-success"
+                            button-change-status 
+                            data-id=user.id 
+                            data-status=user.status                    
+                          ) Hoạt động
+                        else 
+                          a(
+                            href="javascript:" 
+                            class="badge badge-danger"
+                            button-change-status 
+                            data-id=user.id 
+                            data-status=user.status
+                          ) Không hoạt động
+                      td #{user.accountName}
+                      td 
+                        +formatDate(user.deletedBy.deletedAt)
+                      td
+                        a(
+                          class = 'btn btn-secondary btn-sm'
+                          href=`${prefixAdmin}/users/detail/${user.id}`
+                        ) 
+                          i.fas.fa-eye.mr-1
+                        button(
+                          class = 'btn btn-success btn-sm ml-1'
+                          button-restore
+                          data-id=user.id
+                        ) 
+                          i.fas.fa-trash-restore-alt.mr-1
+                        button(
+                          class = 'btn btn-danger btn-sm ml-1'
+                          button-delete
+                          data-id=user.id
+                        ) 
+                          i.fas.fa-trash-alt.mr-1
+            else
+              p Không có dữ liệu
+    if (role.permissions.includes('user_edit'))                      
+      form(
+          action="" 
+          method="POST"
+          id="formChangeStatus"
+          path=`${prefixAdmin}/users/change-status`
+          )
+      form(
+          action="" 
+          method="POST"
+          id="formDeleteItem"
+          path=`${prefixAdmin}/users/trash/delete`
+          )
+      form(
+          action="" 
+          method="POST"
+          id="formRestoreItem"
+          path=`${prefixAdmin}/users/trash/restore`
+          )
+  else 
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ 

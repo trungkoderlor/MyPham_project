@@ -1,0 +1,136 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block head    
+  link(rel='stylesheet', href='/admin/css/dashboard.css')
+block main 
+  +alert-error(expressFlash,5000)
+  +alert-success(expressFlash,5000)  
+  .row.mt-4 
+    
+    .col-6
+      a(href=`${prefixAdmin}/my-account`)  
+        .card.mb-4
+          .card-header Thông Tin Tài Khoản
+          .card-body
+            .row
+              if(user.avatar)
+                .account-avatar.mb-2
+                  img(
+                    src=user.avatar,
+                    alt=user.name,
+                    
+                  )
+              .row
+                table.table.table-hover
+                  tr
+                    td Tên Đầy Đủ
+                    td #{user.fullname}
+                  tr
+                    td Email
+                    td #{user.email}
+                  tr
+                    td Số Điện Thoại
+                    td #{user.phone}
+                  tr
+                    td Vai Trò
+                    td #{role.title}
+                  tr
+                    td Trạng Thái
+                    td 
+                      if (user.status=="active")
+                        a(
+                          href="javascript:" 
+                          class="badge badge-success"
+                          button-change-status 
+                          data-id=user.id 
+                          data-status=user.status                    
+                        ) Hoạt động
+                      else 
+                        a(
+                          href="javascript:" 
+                          class="badge badge-danger"
+                          button-change-status 
+                          data-id=user.id 
+                          data-status=user.status
+                        ) Không hoạt động
+    .col-6 
+      a(href=`#`)  
+        .noti-container.mb-4
+          h5.noti-header
+            | Chào mừng bạn đến với 
+            span.highlight Hệ thống Quản trị !
+          p.noti.text-left
+            | Chúng tôi rất hân hạnh được đồng hành cùng bạn trong hành trình phát triển và đạt đến những mục tiêu cao nhất.
+          p.noti.text-left
+            | Hãy tận dụng mọi công cụ tại đây để làm việc hiệu quả, sáng tạo và an toàn.
+          p.noti.text-left
+            | Luôn kiểm tra và bảo mật thông tin của bạn để đảm bảo tối đa sự an toàn. 
+          p.noti.text-left 
+            | Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ 
+            span.highlight bộ phận hỗ trợ kỹ thuật.
+          p.noti.text-left
+            | Chúc bạn một ngày làm việc hiệu quả, tràn đầy cảm hứng và niềm vui!
+
+
+
+        
+              
+
+            
+    .col-6
+      a(href=`${prefixAdmin}/orders`)  
+        .card.mb-4
+          .card-header Đơn Hàng Trong Tháng
+          .card-body
+            p Doanh thu : <b>#{statistics.orders.revenue}$</b>
+            p Số lượng : <b>#{statistics.orders.total}</b>
+            p Số sản phẩm bán ra: <b>#{statistics.orders.quantity}</b>
+            p Số đơn hàng bị hủy : <b>#{statistics.orders.canceled}</b>
+    .col-6 
+      a(href=`${prefixAdmin}/letters`) 
+        .card.mb-4
+          .card-header Phản Hồi
+          .card-body
+            p Số lượng : <b>#{statistics.letters.total}</b>
+            p Chưa xử lý : <b>#{statistics.letters.unprocessed}</b>
+            p Đang xử lý : <b>#{statistics.letters.processing}</b>
+            p Đã xử lý : <b>#{statistics.letters.processed}</b>
+
+        
+    .col-6
+      a(href=`${prefixAdmin}/categories`)  
+        .card.mb-4
+          .card-header 
+              | Danh Mục Sản Phẩm
+          .card-body
+            p Số lượng : <b>#{statistics.categories.total}</b>
+            p Hoạt đông : <b>#{statistics.categories.active}</b>
+            p Dừng hoạt động: <b>#{statistics.categories.inactive}</b>
+        
+    .col-6 
+      a(href=`${prefixAdmin}/products`)  
+        .card.mb-4
+          .card-header Sản Phẩm
+          .card-body
+            p Số lượng : <b>#{statistics.products.total}</b>
+            p Hoạt đông : <b>#{statistics.products.active}</b>
+            p Dừng hoạt động: <b>#{statistics.products.inactive}</b>
+    .col-6 
+      a(href=`${prefixAdmin}/accounts`)   
+        .card.mb-4
+          .card-header Tài khoản admin
+          .card-body
+            p Số lượng : <b>#{statistics.accounts.total}</b>
+            p Hoạt động : <b>#{statistics.accounts.active}</b>
+            p Dừng hoạt động: <b>#{statistics.accounts.inactive}</b>
+    .col-6  
+      a(href=`${prefixAdmin}/users`)  
+        .card.mb-4
+          .card-header Tài khoản client
+          .card-body
+            p Số lượng : <b>#{statistics.users.total}</b>
+            p Hoạt động : <b>#{statistics.users.active}</b>
+            p Dừng hoạt động: <b>#{statistics.users.inactive}</b>
+            
+        
+

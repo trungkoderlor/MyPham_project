@@ -25,23 +25,31 @@ block main
                     span.badge.badge-primary(style="margin-right: 5px") #{tag}           
                 h5(style="margin-top: 20px") Mô tả sản phẩm
                 p(style="margin-top: 10px") #{product.description}
-              .row.border(style="margin-top: 20px; padding-bottom: 20px;")
-                h5(style="margin-top: 20px") Tình trạng
-                if (product.stock > 0)
-                  h6(style="color:green;") Còn hàng
-                else
-                  h6(style="color: red;") Hết hàng 
-                .quantity.text-center(style="display: flex; margin-top: 10px;")
-                  h5(style="margin-top: 10px;margin-right:20px;") Số lượng:
-                  button.margin-auto(type="button" class="btn btn-outline-secondary btn-sm" id="decrease")
-                    i.fa.fa-minus   
-                  input#quantity.form-control.margin-auto.text-center(style="width: 80px;" readonly="readonly" value="1")
-                  button.margin-auto(type="button" class="btn btn-outline-secondary btn-sm" id="increase")
-                    i.fa.fa-plus
-                .col-md-6
-                  button#addToCart.btn.btn-primary(style="margin-top: 10px; width:100%") Thêm vào giỏ
-                .col-md-6
-                  button#buyNow.btn.btn-success(style="margin-top: 10px; width:100%") Mua ngay
+              form(action=`/cart/add/${product.id}`, method="POST")   
+                .row.border(style="margin-top: 20px; padding-bottom: 20px;")
+                  h5(style="margin-top: 20px") Tình trạng
+                  if (product.stock > 0)
+                    h6(style="color:green;") Còn hàng
+                  else
+                    h6(style="color: red;") Hết hàng
+                  .quantity.text-center(style="display: flex; margin-top: 10px;")
+                    h5(style="margin-top: 10px;margin-right:20px;") Số lượng:
+                    button.margin-auto(type="button" class="btn btn-outline-secondary btn-sm" id="decrease")
+                      i.fa.fa-minus
+
+                    input#quantity.form-control.margin-auto.text-center(
+                      style="width: 80px;" type="number", 
+                      name="quantity", 
+                      value="1", 
+                      min="1", 
+                      max=product.stock
+                    )
+                    button.margin-auto(type="button" class="btn btn-outline-secondary btn-sm" id="increase")
+                      i.fa.fa-plus
+                  .col-md-6
+                    button#addToCart.btn.btn-primary(style="margin-top: 10px; width:100%") Thêm vào giỏ
+                  .col-md-6
+                    button#buyNow.btn.btn-success(style="margin-top: 10px; width:100%") Mua ngay
       .row.reviews 
         .col-12
           h5 Đánh giá của người dùng

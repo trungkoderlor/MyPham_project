@@ -1,0 +1,98 @@
+/* General Page Styling */
+body {
+  background: linear-gradient(135deg, #2a2a2a, #3a9fbf); /* Gradient từ xám đen tới xanh */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  font-size: 14px; /* Giảm kích thước font tổng thể */
+}
+h1 {
+  color: #cdf0f7; /* Màu chữ */
+}
+.container {
+  padding: 0.8rem; /* Giảm padding */
+}
+
+/* Form Styling */
+form {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Shadow nhẹ nhàng */
+  padding: 1.5rem; /* Tăng padding trong form */
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 0.75rem; /* Giảm khoảng cách giữa các nhóm form */
+}
+
+.form-control,
+.form-control-file {
+  font-size: 0.85rem; /* Kích thước chữ nhỏ */
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem; /* Giảm padding */
+}
+
+label {
+  font-weight: 500;
+  color: #555;
+}
+
+/* Button Styling */
+.btn {
+  font-size: 0.8rem; /* Giảm kích thước chữ cho nút */
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #4ca1af;
+  border-color: #4ca1af;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #3a8f9c;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #c43d31;
+  opacity: 0.9;
+}
+
+/* Image Upload Styling */
+.image-preview {
+  width: 120px;
+  height: auto;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+}
+
+/* Radio Button Styling */
+.form-check-input {
+  transform: scale(0.85); /* Giảm kích thước radio button */
+}
+
+.form-check-label {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+/* Tooltip on Hover */
+.btn:hover, .form-check-label:hover, label:hover {
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+
+/* Small Alert Styling */
+.alert-error, .alert-success {
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+}

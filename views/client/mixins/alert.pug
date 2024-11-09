@@ -1,0 +1,16 @@
+mixin alert-success(expressFlash,time)
+    - if (expressFlash.success.length > 0)
+        .success
+            div(
+                class="alert alert-success"
+                data-time=time
+                show-alert
+            ) #{expressFlash.success} <span close-alert style="border: 1px solid #ddd; border-radius: 50%;background: white" >x</span>
+mixin alert-error(expressFlash,time)
+    - if (expressFlash.error.length>0)
+        .error
+            div(
+                class="alert alert-danger"
+                data-time=time
+                show-alert
+            ) #{expressFlash.error} <span close-alert style="border: 1px solid #ddd;border-radius: 50%;background: white">x</span>

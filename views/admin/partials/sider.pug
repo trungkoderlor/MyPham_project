@@ -1,0 +1,59 @@
+// Nút mở/tắt sidebar
+button.sidebar-toggle.btn.btn-primary(type="button", onclick="toggleSidebar()")
+    i(class="fas fa-bars") 
+.sider 
+    .inner-menu 
+        ul 
+            li
+
+                a(href=`${prefixAdmin}/dashboard`)
+                    i.fas.fa-tachometer-alt
+                    | Tổng Quan
+            if(role.permissions.includes('category_view'))
+                li 
+                    a(href=`${prefixAdmin}/categories`)
+                        i.fas.fa-list-alt
+                        | Danh Mục Sản Phẩm
+            if(role.permissions.includes('product_view'))
+                li 
+                    a(href=`${prefixAdmin}/products`)
+                        i.fas.fa-box
+                        | Sản Phẩm
+            if(role.permissions.includes('role_view'))
+                li 
+                    a(href=`${prefixAdmin}/roles`) 
+                        i.fas.fa-users-cog
+                        | Nhóm Quyền
+            if(role.permissions.includes('role_permission'))
+                li 
+                    a(href=`${prefixAdmin}/roles/permissions`) 
+                        i.fas.fa-user-shield
+                        | Phân Quyền
+            if(role.permissions.includes('account_view'))
+                li 
+                    a(href=`${prefixAdmin}/accounts`)
+                        <i class="fa-solid fa-user-secret"></i>
+                        | Tài Khoản Quản Trị
+            if(role.permissions.includes('user_view'))
+                li 
+                    a(href=`${prefixAdmin}/users`)
+                        i.fa-solid.fa-users
+                        | Tài Khoản Người Dùng
+            if(role.permissions.includes('order_view'))
+                li 
+                    a(href=`${prefixAdmin}/orders`)
+                        i.fas.fa-shopping-cart
+                        | Đơn Hàng
+            if (role.permissions.includes('letter_view'))
+                li 
+                    a(href=`${prefixAdmin}/letters`)
+                        i.fas.fa-envelope
+                        | Liên Hệ Khách Hàng
+            if (role.permissions.includes('setting-general_view'))
+                li 
+                    a(href=`${prefixAdmin}/settings/general`)
+                        i.fas.fa-cogs
+                        | Cài Đặt Chung
+            
+            
+            

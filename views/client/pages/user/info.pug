@@ -1,0 +1,15 @@
+extends ../../../client/layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
+include ../../mixins/product-layout.pug
+block main
+  script(src="/js/cart.js") 
+  
+  .container.my-3
+    +alert-success(expressFlash, 5000)
+    +alert-error(expressFlash, 5000)
+    .row.justify-content-center
+      .col-4
+        +box-head('Thông tin tài khoản')
+  .container.my-3
+    p #{user}

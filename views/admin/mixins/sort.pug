@@ -1,0 +1,17 @@
+mixin sort()
+  div(sort)
+    .row 
+      .col-8
+        select.form-control(selector-sort )
+          option(disabled selected) --Chọn sắp xếp--
+          optgroup(label="Theo vị trí")
+            option(value="position-desc") Vị trí giảm dần
+            option(value="position-asc") Vị trí tăng dần
+          optgroup(label="Theo giá")
+            option(value="price-desc") Giá giảm dần
+            option(value="price-asc") Giá tăng dần
+          optgroup(label="Theo tên")
+            option(value="title-asc") Tiêu đề A - Z
+            option(value="title-desc") Tiêu đề Z - A
+      .col-2
+        button.btn.btn-danger(clear-sort) Clear

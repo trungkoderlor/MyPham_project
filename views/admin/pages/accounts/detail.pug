@@ -1,0 +1,64 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/fillter-status.pug
+include ../../mixins/search.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/product.css')
+block main
+  if(role.permissions.includes('account_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000)
+    .account-detail
+      .account-header
+        h1 Chi Tiết Tài Khoản
+        .account-actions
+          a.btn-edit(href=`${prefixAdmin}/accounts/edit/${account.id}`) Edit
+      .account-info
+        .account-avatar
+          img(src=account.avatar alt="Avatar")
+        .info-item
+          span.label Tên đầy đủ:
+          span.value #{account.fullname}
+        .info-item
+          span.label Email:
+          span.value #{account.email}
+        .info-item
+          span.label Số điện thoại:
+          span.value #{account.phone}
+        .info-item
+          span.label Vai trò:
+          span.value #{account.role.title}
+        .info-item
+          span.label Trạng thái:
+          span.value 
+            if (user.status=="active")
+              a(
+                href="javascript:" 
+                class="badge badge-success"
+                button-change-status 
+                data-id=user.id 
+                data-status=user.status                    
+              ) Hoạt động
+            else 
+              a(
+                href="javascript:" 
+                class="badge badge-danger"
+                button-change-status 
+                data-id=user.id   
+                data-status=user.status
+              ) Không hoạt động
+        .info-item
+          span.label Ngày tạo:
+          span.value #{account.createdAt.toLocaleString()}
+        .info-item
+          span.label Ngày cập nhật:
+          span.value #{account.updatedAt.toLocaleString()}
+  else
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+    p Vui lòng liên hệ quản trị viên để được hỗ trợ
+    a(
+      class = 'btn btn-primary btn-sm'
+      href=`${prefixAdmin}/dashboard`
+    ) Quay lại trang chủ 
+      

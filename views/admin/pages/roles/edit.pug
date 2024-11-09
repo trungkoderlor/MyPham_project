@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/form.css')
+block main
+  if(role.permissions.includes('role_edit'))
+    h1.mt-4(class="mb-4") Chỉnh sửa nhóm quyền
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+
+    form.mb-4(
+      action=`${prefixAdmin}/roles/edit/${record.id}?_method=PATCH`
+      method="POST"
+    )
+      div(class="form-group")
+        label(for="title") Tiêu đề
+        input(
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          value=record.title
+          required
+        )
+
+      div(class="form-group")
+        label(for="desc") Mô tả
+        input(
+          type="text"
+          class="form-control"
+          id="desc"
+          name="description"
+          value=record.description
+        )
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-primary"
+        ) Cập nhật
+  else 
+    h1(class="mb-4") Bạn không có quyền truy cập trang này
+      
