@@ -109,8 +109,7 @@ module.exports.permissionsPatch = async (req, res) => {
   try {
     const permissions = JSON.parse(req.body.permissions);
     for (const permission of permissions) {
-      await Role.updateOne({ _id: permission.id }, { permissions: permission.permissions });
-       
+      await Role.updateOne({ _id: permission.id }, { permissions: permission.permissions }); 
     }
     req.flash('success', 'Cập nhật thành công'); 
     res.redirect('back');
@@ -118,5 +117,17 @@ module.exports.permissionsPatch = async (req, res) => {
     req.flash('error', 'Có lỗi xảy ra');
     res.redirect('back');
   }
-
+};
+//[DELETE] /admin/delete/:id
+module.exports.delete = async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Role.updateOne({ _id: id }, { deleted: true });
+    req.flash('success', 'Xóa thành công');
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+  }
+  catch (err) {
+    req.flash('error', 'Có lỗi xảy ra');
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+  }
 };

@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #ff99f5;
+  background-image:
+      radial-gradient(at 61% 4%, rgb(212, 202, 211) 0px, transparent 50%),
+      radial-gradient(at 75% 66%, hsla(196, 91%, 79%, 1) 0px, transparent 50%),
+      radial-gradient(at 98% 88%, hsla(76, 87%, 78%, 1) 0px, transparent 50%),
+      radial-gradient(at 23% 16%, rgb(164, 166, 235) 0px, transparent 50%),
+      radial-gradient(at 95% 65%, rgb(215, 236, 179) 0px, transparent 50%),
+      radial-gradient(at 10% 79%, rgb(91, 113, 203) 0px, transparent 50%),
+      radial-gradient(at 85% 58%, rgb(229, 159, 197) 0px, transparent 50%);
+  background-repeat: no-repeat;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15rem 0;
+  max-height: 100vh;
+}
+
+.card {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 40px;
+  text-align: center;
+}
+
+.lock-icon {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  text-transform: uppercase;
+  color: white;
+}
+
+p {
+  font-size: 12px;
+  color: white;
+}
+
+.passInput {
+  margin-top: 15px;
+  width: 80%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid deepskyblue;
+  font-size: 15px;
+  color: white !important;
+  outline: none;
+  border-radius: 1px;
+}
+
+button {
+  margin-top: 15px;
+  width: 80%;
+  background-color: deepskyblue;
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 20px;
+}

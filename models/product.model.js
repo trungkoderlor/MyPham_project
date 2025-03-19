@@ -8,25 +8,51 @@ const productSchema = new mongoose.Schema({
         default: ""
     },
     description: String,
-    price: Number,
-    discountPercentage: Number,
-    stock: Number,
+    price: {
+        type: Number,
+        default: 0
+    },
+    discountPercentage: {
+        type: Number,
+        default: 0
+    },
+    stock: {
+        type: Number,
+        default: 0
+    },
+    sold: {
+        type: Number,
+        default: 0
+    },
     thumbnail: String,
-    status: String,
+    status: {
+        type: String,
+        default: "active"
+    },
     position: Number,
-    featured: String,
-    brand: String,
+    featured: {
+        type: String,
+        default: "0"
+    },
+    brand_id: {
+        type: String,
+        default: ""
+    },
     images: [String],
-    reviews: [
-        {
-            reviewerName: String,
-            reviewerEmail: String,
-            comment: String,
-            rating: Number,
-            created: {
-                type: Date,
-                default: Date.now
-            }}],
+    // reviews: [
+    //     {
+    //         reviewerName: String,
+    //         reviewerEmail: String,
+    //         comment: String,
+    //         rating: Number,
+    //         created: {
+    //             type: Date,
+    //             default: Date.now
+    //         }}],
+    count_reviews :{
+        type: Number,
+        default:0
+    },
     rating: Number,      
     tags : [String],
     slug: { type: String, slug: "title", unique: true },

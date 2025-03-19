@@ -2,8 +2,10 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 block head 
   link(rel='stylesheet', href='/admin/css/product.css')
-block main 
+block main
+  
   if (role.permissions.includes('role_view'))
+    script(src="/admin/js/product.js")
     h1(class="mb-4") Nhóm Quyền
     +alert-error(expressFlash,5000)
     +alert-success(expressFlash,5000)  
@@ -45,13 +47,27 @@ block main
                         i.fas.fa-edit
                     if (role.permissions.includes('role_delete'))  
                       button(
-                        class="btn btn-danger btn-sm ml-1"
+                      class = 'btn btn-danger btn-sm'
+                      button-delete
+                      data-id=item.id
                       ) 
-                        i.fas.fa-trash
+                        i.fas.fa-trash-alt.mr-1
             else
               tr
                 td(colspan="4" class="text-center") Chưa có nhóm quyền nào được tạo.
+    form(
+      action="" 
+      method="POST"
+      id="formDeleteItem"
+      path=`${prefixAdmin}/roles/delete`
+    )
   else 
-    h1 Bạn không có quyền truy cập trang này.
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 
       
             

@@ -6,8 +6,9 @@ block main
         h1.text-center(style="margin-top: 20px") Giới thiệu 
         .inner-dir
         .row.text-center(style="margin-top: 20px; margin-bottom:40px; border-bottom:1px solid #ddd; border-radius:15px;")
-          p(style="font-size:16px; padding:0 110px;margin-bottom:40px;") Chúng tôi là một công ty chuyên cung cấp và phân phối mỹ phẩm chính hãng hàng đầu tại Việt Nam. 
-            | Với đội ngũ nhân viên chuyên nghiệp, chúng tôi cam kết mang đến cho khách hàng những sản phẩm chất lượng nhất.
+          span.mt-2.mb-2(style="padding: 0 110px; ")
+            | !{settingGeneral.desc}
+          
         .row
           .col-md-6
             img(src="/images/about.png" class="img_about" alt="about" style="width: 100%")

@@ -10,9 +10,12 @@ block main
     if (records) 
       div(data-records=records)
       div(class="text-right")
-        button(type="submit" class="btn btn-primary mb-2" button-submit) Cập nhật
+        button(type="submit" class="btn btn-primary mb-2" button-submit) 
+          <i class="fa-solid fa-arrows-rotate"></i> Cập nhật
       .card.mb-3 
-        .card-header Bảng Phân Quyền
+        .card-header 
+          <i class="fa-solid fa-table mr-2"></i>
+          | Bảng Phân Quyền
         .card-body
           table(class="table table-hover table-sm" table-permissions)
             thead
@@ -57,6 +60,31 @@ block main
                 each item in records
                   td(class="text-center")
                     input(type="checkbox")
+              //-thương hiệu
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Thương hiệu
+              tr(data-name="brand_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="brand_create")
+                td Thêm mới
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="brand_edit")
+                td Chỉnh sửa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="brand_delete")
+                td Xóa
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              
               //-sản phẩm
               tr
                 td(colspan=`${records.length + 1}`)
@@ -122,13 +150,6 @@ block main
                 each item in records
                   td(class="text-center")
                     input(type="checkbox")
-              
-              tr(data-name="letter_edit")
-                td Chỉnh sửa
-                each item in records
-                  td(class="text-center")
-                    input(type="checkbox")
-              
               tr(data-name="letter_reply")
                 td Phản hồi
                 each item in records
@@ -142,6 +163,25 @@ block main
                     input(type="checkbox")
               tr(data-name="letter_trash")
                 td Thùng rác
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              //-Đánh giá sản phẩm
+              tr
+                td(colspan=`${records.length + 1}`)
+                  b Đánh Giá
+              tr(data-name="review_view")
+                td Xem
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="review_reply")
+                td Phản hồi
+                each item in records
+                  td(class="text-center")
+                    input(type="checkbox")
+              tr(data-name="review_delete")
+                td Xóa
                 each item in records
                   td(class="text-center")
                     input(type="checkbox")
@@ -265,4 +305,10 @@ block main
         ) 
     script(src="/admin/js/role.js")
   else 
-    h1 Bạn không có quyền truy cập trang này
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 

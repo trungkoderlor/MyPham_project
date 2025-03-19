@@ -82,7 +82,9 @@ block main
                       button(
                         type="submit"
                         class="btn btn-primary ml-3 float-right"
-                      ) Gửi phản hồi
+                      ) 
+                        i.fa-solid.fa-paper-plane.mr-2
+                        | Gửi phản hồi
                 else
                   .row
                     .alert.alert-success
@@ -100,12 +102,13 @@ block main
                             .col-3
                               span.text-left(style="color : #8b8989") #{letter.reply.createdAt.toLocaleString()}
   else
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ                 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ                
               
 
                 

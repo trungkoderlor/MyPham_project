@@ -1,0 +1,146 @@
+extends ../../../client/layouts/default.pug
+include ../../mixins/box-head.pug
+include ../../mixins/alert.pug
+block head 
+  link(rel="stylesheet", href="/css/order.css")
+block main
+  .container.mt-4
+    //- Lọc theo trạng thái đơn hàng
+    .container.nav-status.text-center.mb-4
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light.d-flex.justify-content-center
+          ul.navbar-nav.mx-auto.justify-content-center
+            li.nav-item
+              a.nav-link(href="/user/history-orders" class=(status==""?"choose":"")) Tất cả
+            li.nav-item
+              a.nav-link(href="/user/history-orders?status=pending" class=(status=="pending"?"choose":"")) Chờ Gửi Hàng
+            li.nav-item
+              a.nav-link(href="/user/history-orders?status=shipping" class=(status=="shipping"?"choose":"")) Đang Giao Hàng
+            li.nav-item
+              a.nav-link(href="/user/history-orders?status=shipped" class=(status=="shipped"?"choose":"")) Đã Giao
+            li.nav-item
+              a.nav-link(href="/user/history-orders?status=unreceived" class=(status=="unreceived"?"choose":"")) Chưa Nhận Được Hàng
+            li.nav-item
+              a.nav-link(href="/user/history-orders?status=completed" class=(status=="completed"?"choose":"")) Đã Hoàn Thành
+            li.nav-item
+              a.nav-link(href="/user/history-orders?status=cenceled" class=(status=="cenceled"?"choose":"")) Đã Hủy
+    if orders.length
+      each order in orders  
+        .card.mb-4.shadow.list-order
+          .card-header.d-flex.justify-content-between.align-items-center
+            span.font-weight-bold.text-primary Đơn hàng lúc #{order.createdAt.toLocaleTimeString()} ngày #{order.createdAt.toLocaleDateString()}
+            span
+              if order.status == "pending"
+                a(
+                  href="javascript:" 
+                  class="badge badge-secondary"
+                  button-change-status 
+                  data-id=order.id 
+                  data-status=order.status                    
+                ) Chờ Gửi Hàng
+              else if order.status == "shipping"
+                a(
+                  href="javascript:" 
+                  class="badge badge-warning"
+                  button-change-status 
+                  data-id=order.id 
+                  data-status=order.status
+                ) Đang Giao Hàng
+              else if (order.status=="shipped")
+                a(
+                  href="javascript:" 
+                  class="badge badge-primary"
+                  button-change-status 
+                  data-id=order.id 
+                  data-status=order.status
+                ) Đã Giao Hàng
+              else if (order.status=="unreceived")
+                a(
+                  href="javascript:" 
+                  class="badge badge-dark"
+                  button-change-status 
+                  data-id=order.id 
+                  data-status=order.status
+                ) Chưa Nhận Được Hàng
+              else if order.status == "completed"
+                a(
+                  href="javascript:" 
+                  class="badge badge-success"
+                  button-change-status 
+                  data-id=order.id 
+                  data-status=order.status
+                ) Đã Hoàn Thành
+              else 
+                a(
+                  href="javascript:" 
+                  class="badge badge-danger"
+                  button-change-status 
+                  data-id=order.id 
+                  data-status=order.status
+                ) Đã Hủy
+
+          .card-body
+            each product in order.products
+              .product-row.d-flex.align-items-center.mb-3
+                img(src=product.productInfo.thumbnail, alt="Thumbnail", class="product-thumbnail me-3" width="100")
+                .product-info.flex-grow-1
+                  h6.text-truncate.mb-1 #{product.productInfo.title}
+                  .d-flex.text-muted
+                    span.text-decoration-line-through.mr-2 #{product.price.toLocaleString()}$
+                    span.text-danger #{product.priceNew.toLocaleString()}$
+                  .d-flex.mt-1
+                    span.text-primary x#{product.quantity}
+                  .d-flex.text-danger.font-weight-bold.mt-1
+                    span.mr-2 Thành tiền:  
+                    span #{product.totalPrice.toLocaleString()}$
+                if order.status == "completed" && product.status == "unreviewed"
+                  btn.btn-review.btn.btn-sm.btn-outline-primary.ms-auto(
+                    
+                    order-id=order.id
+                    product-id=product.product_id
+                  ) Đánh Giá
+                else if order.status == "completed" && product.status == "reviewed"
+                  
+                  a.btn-review.btn.btn-sm.btn-outline-primary.ms-auto(
+                    href=`/products/${product.productInfo.slug}#${product.review.id}`
+                  ) Xem lại đánh giá
+                
+              .review-form-container.hidden(id=`review-form-${order.id}-${product.product_id}`)
+                // Form đánh giá sẽ được chèn tại đây
+            .font-weight-bold.mt-3.ml-4
+              span Tổng đơn: 
+              span.text-danger #{order.totalPrice.toLocaleString()}$
+              if (order.status == "pending" || order.status == "shipping")
+                form(action="/user/history-orders/cancel", method="post") 
+                  input(type="hidden", name="orderId", value=order.id)
+                  button.button-cancel-order.btn.btn-sm.btn-outline-danger.float-right(
+                    type="submit" 
+                    data-id=order.id
+                  )
+                    | Hủy Đơn    
+              if order.status == "shipped" 
+                form(action="/user/history-orders/confirm", method="post") 
+                  input(type="hidden", name="orderId", value=order.id)
+                  button.mr-4.button-pay.btn.btn-sm.btn-outline-success.float-right(
+                    data-id=order.id
+                  )
+                    | Đã Nhận Hàng
+                form(action="/user/history-orders/unreceived", method="post") 
+                  input(type="hidden", name="orderId", value=order.id)
+                  button.mr-4.button-pay.btn.btn-sm.btn-outline-dark.float-right(
+                    data-id=order.id
+                  )
+                    | Chưa Nhận Được Hàng
+              if order.status == "unreceived"
+                form(action="/user/history-orders/confirm", method="post") 
+                  input(type="hidden", name="orderId", value=order.id)
+                  button.mr-4.button-pay.btn.btn-sm.btn-outline-success.float-right(
+                    data-id=order.id
+                  )
+                    | Đã Nhận Hàng
+                a.mr-3(href="/user/chat").btn.btn-sm.btn-outline-primary.float-right
+                  | Liên hệ hỗ trợ
+    else
+      .alert.alert-info.text-center()
+        | Bạn chưa có đơn hàng nào.
+      p(style="height:50vh")
+    

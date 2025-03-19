@@ -12,7 +12,8 @@ block main
       .account-header
         h1 Chi Tiết Tài Khoản
         .account-actions
-          a.btn-edit(href=`${prefixAdmin}/accounts/edit/${user.id}`) Edit
+          a.btn-edit(href=`${prefixAdmin}/accounts/edit/${user.id}`) 
+            i.fas.fa-edit
       .account-info
         .account-avatar
           img(src=user.avatar alt="Avatar")

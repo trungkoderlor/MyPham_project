@@ -15,7 +15,9 @@ block main
       +alert-success(expressFlash,5000)         
       h1 Danh Mục Sản Phẩm
       .card.mb-3 
-        .card-header Bộ Lọc và Tìm Kiếm
+        .card-header 
+          <i class="fa-solid fa-filter mr-2"></i>
+          | Bộ Lọc và Tìm Kiếm
         .card-body
           .row
             .col-6
@@ -23,7 +25,9 @@ block main
             .col-6 
               +search(keywords)
       .card.mb-3 
-        .card-header Danh Sách
+        .card-header 
+          <i class="fa-solid fa-table mr-2"></i>
+          | Danh Sách
         .card-body
           .row
             .col-8
@@ -56,8 +60,8 @@ block main
                       form="formChangeMulti"
                     )
                   th STT
-                  th Hình Ảnh
-                  th Tên Danh Mục              
+                  th Tên Danh Mục  
+                  th Mô Tả Ngắn            
                   th Vị trí
                   th Trạng thái
                   th Thao Tác
@@ -78,5 +82,11 @@ block main
         path=`${prefixAdmin}/categories/delete`
       )
     else 
-      h1 Bạn không có quyền truy cập trang này
+      .non-permission
+        h1(class="mb-4") Bạn không có quyền truy cập trang này
+        p Vui lòng liên hệ quản trị viên để được hỗ trợ
+        a(
+          class = 'btn btn-primary btn-sm'
+          href=`${prefixAdmin}/dashboard`
+        ) Quay lại trang chủ 
           

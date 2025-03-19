@@ -5,6 +5,8 @@ const Account = require('../../models/account.model');
 const User = require('../../models/user.model');
 const Order = require('../../models/order.model');
 const Letter = require('../../models/letter.model');
+
+const { Socket } = require('socket.io');
 module.exports.dashboard = async (req, res) => {
     
     const statistics = {
@@ -71,7 +73,7 @@ module.exports.dashboard = async (req, res) => {
             statistics.letters.processed = letters.filter(letter => letter.status === "processed").length;
             statistics.letters.processing = letters.filter(letter => letter.status === "processing").length;
         })
-    //lọc các đơn hàng trong tháng hiện tại và tính tổng doanh thu
+    
     try {
         // Lấy ngày đầu tiên và ngày cuối cùng của tháng hiện tại
         const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
@@ -93,15 +95,26 @@ module.exports.dashboard = async (req, res) => {
             }, 0);
             return total + orderTotal;
         }, 0);
+        statistics.orders.revenue = totalRevenue.toFixed(3);  ; 
 
-        statistics.orders.revenue = totalRevenue;
         statistics.orders.total = orders.length;
         statistics.orders.quantity = orders.reduce((total, order) => total + order.products.length, 0);
         statistics.orders.canceled = orders.filter(order => order.status === "canceled").length;
+        
+        const orderCountsByDay = Array.from({ length: endOfMonth.getDate() }, () => 0);
+        orders.forEach(order => {
+            const orderDate = new Date(order.createdAt).getDate(); // Lấy ngày trong tháng (1 -> 30/31)
+            orderCountsByDay[orderDate - 1] += 1; // Tăng số lượng đơn hàng của ngày đó
+        });
 
+        const daysInMonth = Array.from({ length: endOfMonth.getDate() }, (_, i) => `Ngày ${i + 1}`);
         res.render("admin/pages/dashboard/index", {
             pageTitle: "Trang Tổng Quan",
             statistics: statistics,
+            data: {
+                labels: daysInMonth, 
+                values: orderCountsByDay
+            },
             expressFlash:
         {
           success: req.flash('success'),

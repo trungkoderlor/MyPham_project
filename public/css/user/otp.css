@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background-color: #EAF5F6;
+  background-image:
+      radial-gradient(at 61% 4%, rgb(212, 202, 211) 0px, transparent 50%),
+      radial-gradient(at 75% 66%, hsla(196, 91%, 79%, 1) 0px, transparent 50%),
+      radial-gradient(at 98% 88%, hsla(76, 87%, 78%, 1) 0px, transparent 50%),
+      radial-gradient(at 23% 16%, rgb(164, 166, 235) 0px, transparent 50%),
+      radial-gradient(at 95% 65%, rgb(215, 236, 179) 0px, transparent 50%),
+      radial-gradient(at 10% 79%, rgb(91, 113, 203) 0px, transparent 50%),
+      radial-gradient(at 85% 58%, rgb(229, 159, 197) 0px, transparent 50%) !important;
+ 
+}
+body{
+  min-width: 100vw;
+}
+
+.container {
+  width: 400px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 25px;
+}
+
+h3.title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #093030;
+  margin-bottom: 25px;
+}
+
+p.sub-title {
+  color: #B5BAB8;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+p span.phone-number {
+  display: block;
+  color: #093030;
+  font-weight: 600;
+}
+
+.wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: space-between;
+}
+
+.wrapper input.field {
+  width: 50px;
+  line-height: 75px;
+  font-size: 32px;
+  border: none;
+  background-color: #EAF5F6;
+  border-radius: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #093030;
+  margin-bottom: 25px;
+}
+
+.wrapper input.field:focus {
+  outline: none;
+}
+
+button.resend {
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  color: #3DAFE1;
+  cursor: pointer;
+}
+
+button.resend i {
+  margin-left: 5px;
+}
+/* Ẩn mũi tên lên xuống trên các trình duyệt Webkit (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ẩn mũi tên lên xuống trên Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+button.resend[disabled] {
+  background-color: #ddd; /* Màu nền khi disabled */
+  color: #aaa; /* Màu chữ khi disabled */
+  border: 1px solid #ccc; /* Viền nhạt hơn */
+  cursor: not-allowed; /* Con trỏ chuột khi hover */
+}
+a.account-btn {
+  text-decoration: none;
+  font-weight: 600;
+  color: #3DAFE1;
+  border: 1px solid #3DAFE1;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a.account-btn:hover {
+  background-color: #3DAFE1;
+  color: #fff;
+}
+form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}

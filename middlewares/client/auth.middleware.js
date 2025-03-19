@@ -8,7 +8,7 @@ module.exports.requireAuth = async (req, res, next) => {
     if(!user){
       return res.redirect(`/user/login`);
     }else{
-      res.locals.user = user;
+      res.locals.clientUser = user;
       next();
     }
     

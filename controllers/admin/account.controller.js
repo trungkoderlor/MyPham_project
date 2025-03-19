@@ -71,6 +71,9 @@ module.exports.createPost = async (req, res) => {
   if (req.file) {
     req.body.avatar = `/uploads/${req.file.filename}`;
   }
+  else {
+    req.body.avatar = `/images/default-avatar.jpg`;
+  }
   const record = new Account(req.body);
   await record.save();
   res.redirect(`${systemConfig.prefixAdmin}/accounts`);

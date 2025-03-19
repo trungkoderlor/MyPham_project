@@ -71,7 +71,7 @@ h1{
 }
 
 /* Badge Styling */
-.badge-success, .badge-danger {
+.badge-success, .badge-danger ,.badge-primary, .badge-secondary , .badge-warning , .badge-dark {
   font-size: 0.75rem; /* Smaller font size */
   padding: 0.2rem 0.6rem; /* Reduced padding */
   border-radius: 10px;

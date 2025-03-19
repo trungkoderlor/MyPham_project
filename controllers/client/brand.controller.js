@@ -20,5 +20,9 @@ module.exports.index = async (req, res) => {
         pageTitle: title,
         products: newProducts,
         keyword: req.query.keyword,
+        expressFlash:{
+            success: req.flash('success'),
+            error: req.flash('error')
+        }
     });
 }

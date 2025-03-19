@@ -4,63 +4,94 @@ include ../../mixins/alert.pug
 block head 
   link(rel='stylesheet', href='/admin/css/product.css')
 block main
-  +alert-error(expressFlash,5000)
-  +alert-success(expressFlash,5000) 
-  .product-detail
-    if (product.title)
-      h1.product-title #{product.title}
-    
-    .product-info
-      if (product.thumbnail)
-        .product-thumbnail
-          img(src=product.thumbnail alt=product.title)
+  if(role.permissions.includes('product_view'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000) 
+    .product-detail
+      if (product.title)
+        h1.product-title #{product.title}
       
-      .product-meta
-        if (product.price)
-          div Giá: <b>#{product.price}$</b>
+      .product-info
+        if (product.thumbnail)
+          .product-thumbnail
+            img(src=product.thumbnail alt=product.title)
         
-        if (product.discountPercentage)
-          div Giảm giá: <b>#{product.discountPercentage}%</b>
-        
-        if (product.stock)
-          div Còn lại: <b>#{product.stock}</b>
-        
-        if (product.status)
-          div
-            span Trạng thái: 
-            if (product.status == "active")
-              span.badge.badge-success Hoạt động
-            else 
-              span.badge.badge-danger Dừng hoạt động
-        
-        if (product.position)
-          div Vị trí: <b>#{product.position}</b>
-        
-        if (product.createdBy)
-          div
-            if (product.accountName) 
-              span Người tạo: <b>#{product.accountName}</b>
-            span - Tạo vào lúc: <b> 
-              +formatDateTime(product.createdBy.createdAt)
-              </b>
-        
-        if (product.updatedBy && product.updatedBy.length > 0)
-          div
-            span - Lịch sử cập nhật:
-            ul.update-list
-              each update in product.updatedBy
-                li
-                  span Người cập nhật: <b>#{product.accountUpdateName}</b>
-                  span vào lúc: <b>
-                    +formatDateTime(update.updatedAt)
-                  </b>
-    
-    if (product.description)
-      .product-description
-        h2 Mô tả
-        p #{product.description}
-    
-    a.btn.btn-warning.btn-sm.btn-detail(href=`${prefixAdmin}/products/edit/${product.id}`) Sửa
+        .product-meta
+          if (product.price)
+            div Giá: <b>#{product.price}$</b>
+          
+          div Đã bán: <b>#{product.sold}</b>
+          
+          if (product.discountPercentage)
+            div Giảm giá: <b>#{product.discountPercentage}%</b>
+          
+          if (product.stock)
+            div Còn lại: <b>#{product.stock}</b>
+          if (product.categoryName)
+            div
+              span Danh mục: 
+              if (product.categoryName)
+                span.badge.badge-primary #{product.categoryName}
+              else 
+                span.badge.badge-danger Không có
+          if (product.brandName)
+            div
+              span Thương hiệu: 
+              if (product.brandName)
+                span.badge.badge-info #{product.brandName}
+              else 
+                span.badge.badge-danger Không có
+          if (product.featured)
+            div
+              span Nổi bật: 
+              if (product.featured == "1")
+                span.badge.badge-success Có
+              else 
+                span.badge.badge-danger Không  
+          if (product.status)
+            div
+              span Trạng thái: 
+              if (product.status == "active")
+                span.badge.badge-success Hoạt động
+              else 
+                span.badge.badge-danger Dừng hoạt động
+          
+          if (product.position)
+            div Vị trí: <b>#{product.position}</b>
+          
+          if (product.createdBy)
+            div
+              if (product.accountName) 
+                span Người tạo: <b>#{product.accountName}</b>
+              span - Tạo vào lúc: <b> 
+                +formatDateTime(product.createdBy.createdAt)
+                </b>
+          
+          if (product.updatedBy && product.updatedBy.length > 0)
+            div
+              span - Lịch sử cập nhật:
+              ul.update-list
+                each update in product.updatedBy
+                  li
+                    span Người cập nhật: <b>#{product.accountUpdateName}</b>
+                    span vào lúc: <b>
+                      +formatDateTime(update.updatedAt)
+                    </b>
+      
+      if (product.description)
+        .product-description
+          h2 Mô tả
+          p !{product.description}
+      
+      a.btn.btn-warning.btn-sm.btn-detail(href=`${prefixAdmin}/products/edit/${product.id}`) Sửa
+  else 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 
 
   script(src="/admin/js/product.js")
 

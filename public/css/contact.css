@@ -1,0 +1,45 @@
+/* Hover hiệu ứng */
+.nav-status .nav-link:hover {
+  background-color: #f8f9fa; /* Màu nền khi hover */
+  color: #007bff; /* Màu chữ khi hover */
+}
+
+/* Mục được active */
+.nav-status .nav-link.active {
+  background-color: #007bff; /* Màu nền active */
+  color: #fff; /* Màu chữ active */
+  border: 1px solid #007bff; /* Viền cho mục active */
+}
+
+/* Thêm khoảng cách giữa các mục */
+.nav-status .nav-item {
+  margin: 0 10px;
+}
+
+/* Background của navbar */
+.nav-status .navbar {
+  background-color: #e9ecef; /* Màu nền tổng thể */
+  border-radius: 8px; /* Làm tròn góc */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
+  
+}
+
+/* Hiển thị responsive trên màn hình nhỏ */
+@media (max-width: 768px) {
+  .nav-status .nav-item {
+      margin: 5px 0; /* Giảm khoảng cách giữa các mục trên màn hình nhỏ */
+  }
+  .nav-status .navbar {
+      text-align: center;
+      padding: 10px;
+  }
+}
+.choose{
+  /* phóng to chữ lên */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #82aacc !important;
+  border-bottom: 2px solid #82aacc;
+  border-radius: 0px !important;
+}

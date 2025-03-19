@@ -11,7 +11,7 @@ block main
     +alert-success(expressFlash,5000)
     h1(class="mb-4") Danh Sách Tài Khoản Quản Trị
     script(src="/admin/js/product.js")
-    .card.mb-3
+    .card.mb-3(style="min-h ")
       .card-header 
         .row
           .col-6
@@ -110,9 +110,10 @@ block main
             path=`${prefixAdmin}/accounts/delete`
           )
   else 
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 

@@ -34,8 +34,7 @@ block main
       .card-body
         .row 
           .col-md-12
-            +alert-success(expressFlash, 5000)
-            +alert-error(expressFlash, 5000)
+            
             if letters.length > 0
               table#dataTable(class="table table-sm table-hover" width="100%" cellspacing="0")
                 thead
@@ -112,9 +111,10 @@ block main
           path=`${prefixAdmin}/letters/delete`
           )  
   else 
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 

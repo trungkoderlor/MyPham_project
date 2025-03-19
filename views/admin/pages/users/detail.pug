@@ -10,29 +10,55 @@ block main
     +alert-error(expressFlash,5000)
     +alert-success(expressFlash,5000) 
     .account-detail
+
       .account-header
-        h1 User Details
+        h1 Chi Tiết Người Dùng
         .account-actions
-          button.btn-edit Edit
-          button.btn-delete Delete
+          a.btn-edit(href=`${prefixAdmin}/users/edit/${a_user.id}`)
+            i.fas.fa-edit
+      .account-avatar
+        img(src=a_user.avatar alt="User Avatar")
       .account-info
         .info-item
-          .label Full Name:
-          .value #{user.fullname}
+          .label Tên đầy đủ: 
+          .value #{a_user.fullname}
         .info-item
           .label Email:
           .value #{user.email}
         .info-item
-          .label Phone:
-          .value #{user.phone}
+          .label Số điện thoại:
+          .value #{a_user.phone}
         .info-item
-          .label Status:
-          .value #{user.status}
+          .label Trạng thái:
+          .value 
+            if (a_user.status=="active")
+              a(
+                href="javascript:" 
+                class="badge badge-success"
+                button-change-status 
+                data-id=a_user.id 
+                data-status=a_user.status                    
+              ) Hoạt động
+            else 
+              a(
+                href="javascript:" 
+                class="badge badge-danger"
+                button-change-status 
+                data-id=a_user.id   
+                data-status=a_user.status
+              ) Không hoạt động
         .info-item
-          .label Created At:
-          .value #{user.createdAt}
+          .label Ngày tạo:
+          .value #{a_user.createdAt.toLocaleString()}
         .info-item
-          .label Updated At:
-          .value #{user.updatedAt}
-      .account-avatar
-        img(src=user.avatar alt="User Avatar")
+          .label Ngày cập nhật:
+          .value #{a_user.updatedAt.toLocaleString()}
+      
+  else 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 

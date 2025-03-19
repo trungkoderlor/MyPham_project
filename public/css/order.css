@@ -1,0 +1,195 @@
+/* Tổng thể */
+body {
+  background-color: #f8f9fa; /* Nền sáng dịu */
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  color: #343a40;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Card tổng */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  border-radius: 12px 12px 0 0;
+  padding: 15px 20px;
+}
+
+/* Sản phẩm */
+.product-row {
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.product-row:last-child {
+  border-bottom: none; /* Bỏ viền dưới sản phẩm cuối */
+}
+
+.product-thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.product-info h6 {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.product-info span.text-danger {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-review {
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-review:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Tổng giá đơn hàng */
+.text-end.font-weight-bold span.text-danger {
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-row {
+    flex-wrap: wrap;
+  }
+
+  .product-thumbnail {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  .product-info {
+    text-align: center;
+  }
+
+  .btn-review {
+    margin: 10px auto 0;
+    display: block;
+  }
+}
+.hidden {
+  display: none;
+}
+
+.review-form-container {
+  margin-top: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.review-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form-container textarea {
+  resize: none;
+  height: 80px;
+  border-radius: 5px;
+}
+
+.review-form-container .rating-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-stars i {
+  font-size: 20px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.rating-stars i.active {
+  color: #ffc107;
+}
+/* Căn giữa các mục trong navbar */
+
+.nav-status .nav-link {
+  color: #555; /* Màu văn bản mặc định */
+  font-weight: 500; /* Tăng độ đậm văn bản */
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover hiệu ứng */
+.nav-status .nav-link:hover {
+  background-color: #f8f9fa; /* Màu nền khi hover */
+  color: #007bff; /* Màu chữ khi hover */
+}
+
+/* Mục được active */
+.nav-status .nav-link.active {
+  background-color: #007bff; /* Màu nền active */
+  color: #fff; /* Màu chữ active */
+  border: 1px solid #007bff; /* Viền cho mục active */
+}
+
+/* Thêm khoảng cách giữa các mục */
+.nav-status .nav-item {
+  margin: 0 10px;
+}
+
+/* Background của navbar */
+.nav-status .navbar {
+  background-color: #e9ecef; /* Màu nền tổng thể */
+  border-radius: 8px; /* Làm tròn góc */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng mờ */
+}
+
+/* Hiển thị responsive trên màn hình nhỏ */
+@media (max-width: 768px) {
+  .nav-status .nav-item {
+      margin: 5px 0; /* Giảm khoảng cách giữa các mục trên màn hình nhỏ */
+  }
+  .nav-status .navbar {
+      text-align: center;
+      padding: 10px;
+  }
+}
+.choose{
+  /* phóng to chữ lên */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #82aacc !important;
+  border-bottom: 2px solid #82aacc;
+  border-radius: 0px !important;
+}

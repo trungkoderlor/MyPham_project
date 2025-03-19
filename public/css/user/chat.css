@@ -1,0 +1,239 @@
+/* Connection Prompt */
+.connection-prompt {
+  text-align: center;
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.connection-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.connection-actions button {
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* Connection Status */
+.connection-status {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Chat Component */
+.chat {
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat .inner-header {
+  background: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat .inner-body {
+  padding: 15px;
+ height: 500px;
+ min-height: 500px;
+  overflow-y: auto;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+
+}
+
+.chat .inner-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat .inner-body::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.chat .inner-body .inner-incoming,
+.chat .inner-body .inner-outgoing {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.chat .inner-body .inner-incoming .inner-content,
+.chat .inner-body .inner-outgoing .inner-content {
+  padding: 12px;
+  border-radius: 12px;
+  max-width: 75%;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.chat .inner-body .inner-incoming .inner-content {
+  background: #f1f1f1;
+  color: #333;
+  margin-right: auto;
+}
+
+.chat .inner-body .inner-outgoing .inner-content {
+  background: #007bff;
+  color: #fff;
+  margin-left: auto;
+}
+
+.chat .inner-body .inner-name {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.chat .inner-foot {
+  border-top: 1px solid #ddd;
+  padding: 15px;
+  background: #fafafa;
+}
+
+.chat .inner-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat .inner-form input {
+  flex: 1;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0 15px;
+  font-size: 14px;
+  outline: none;
+}
+
+.chat .inner-form input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.chat .inner-form button {
+  border-radius: 20px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat .inner-form button:hover {
+  background: #0056b3;
+}
+
+/* Typing Indicator */
+.box-typing .inner-dots {
+  position: relative;
+  height: 20px;
+  width: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #efefef;
+  border-radius: 45px;
+  margin-top: 10px;
+}
+
+.box-typing .inner-dots span {
+  animation: blink 1.5s infinite;
+  height: 6px;
+  width: 6px;
+  background: #333;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.box-typing .inner-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.box-typing .inner-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+.show {
+  display: block !important;
+}
+
+/* Định dạng chung cho các nút */
+button.btn-retry,
+button.btn-contact {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px 5px; 
+}
+
+
+button.btn-retry {
+  background-color: #007bff; 
+  color: #fff;
+}
+
+button.btn-retry:hover {
+  background-color: #0056b3; 
+}
+
+
+button.btn-contact {
+  background-color: #28a745; 
+  color: #fff;
+}
+
+button.btn-contact:hover {
+  background-color: #1e7e34; 
+}
+.noti-end-chat{
+  color: #333;
+  margin: 10px;
+  text-align: center;
+}
+.btn-end-chat{
+  cursor: pointer;
+}

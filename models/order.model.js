@@ -9,17 +9,26 @@ const orderSchema = new mongoose.Schema({
         email: String,
         address: String
     },
+    paymentMethod: {
+        type: String,
+        enum: ['cod', 'transfer'],
+        default: 'cod'
+    },
     products: [{
         product_id: String,
         price : Number,
         discountPercentage: Number,
-        quantity: Number
+        quantity: Number,
+        status: {
+            type: String,
+            default: 'unreviewed'
+        }
     }],
     status: {
         type: String,
+        enum: ['pending', 'shipping','shipped','unreceived', 'completed', 'canceled'],
         default: 'pending'
     }
-        // pending, shipping, completed, canceled
 },{
     timestamps: true
 });

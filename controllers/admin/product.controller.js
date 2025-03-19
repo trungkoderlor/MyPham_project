@@ -7,6 +7,7 @@ const systemConfig = require('../../config/system');
 const createTreeHelper = require('../../helpers/createTree');
 const Category = require('../../models/category.model');
 const Account = require('../../models/account.model');
+const Brand = require('../../models/brand.model');
 // [GET] /admin/products
 module.exports.index = async (req, res) => {
 
@@ -226,6 +227,7 @@ module.exports.create = async (req, res) => {
     const records = await Category.find({
         deleted: false
       });
+      const brand = await Brand.find({});
     const newRecords = createTreeHelper.Tree(records);
     res.render("admin/pages/products/create", {
         pageTitle: "Trang Tạo Sản Phẩm",
@@ -233,7 +235,8 @@ module.exports.create = async (req, res) => {
             success: req.flash('success'),
             error: req.flash('error')
         },
-        records: newRecords
+        records: newRecords,
+        brands: brand
     });
 }
 //[POST] /admin/products/create
@@ -243,8 +246,8 @@ module.exports.createPost = async (req, res) => {
         res.redirect('back');
         return;
     }
-    req.body.price = parseInt(req.body.price);
-    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.price = parseFloat(req.body.price);
+    req.body.discountPercentage = parseFloat(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
     if (req.body.position == "") {
         const countProducts = await Product.countDocuments();
@@ -274,6 +277,7 @@ module.exports.edit = async (req, res) => {
             deleted: false
           });
         const newRecords = createTreeHelper.Tree(records);
+        const brands = await Brand.find({});
         const product = await Product.findOne(find);
         res.render("admin/pages/products/edit", {
             pageTitle: "Trang Sửa Sản Phẩm",
@@ -282,6 +286,7 @@ module.exports.edit = async (req, res) => {
                 error: req.flash('error')
             },
             product: product,
+            brands: brands,
             records: newRecords
         });
     }
@@ -298,9 +303,8 @@ module.exports.editPatch = async (req, res) => {
         res.redirect('back');
         return;
     }
-    console.log(req.body);
-    req.body.price = parseInt(req.body.price);
-    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.price = parseFloat(req.body.price);
+    req.body.discountPercentage = parseFloat(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
     if (req.body.position == "") {
         const countProducts = await Product.countDocuments();
@@ -310,6 +314,7 @@ module.exports.editPatch = async (req, res) => {
     }
     if (req.file) {
         req.body.thumbnail = `/uploads/${req.file.filename}`;
+        req.body.images =`/uploads/${req.file.filename}` ; 
     }
     const updatedBy={
         account_id: res.locals.user.id,
@@ -324,7 +329,7 @@ module.exports.editPatch = async (req, res) => {
             }
         );
         req.flash("success", 'sửa sản phẩm thành công');
-        res.redirect(`back`);
+        res.redirect(`${systemConfig.prefixAdmin}/products`);
     }
     catch (error) {
         req.flash("success", 'sửa sản phẩm không thành công');
@@ -344,6 +349,15 @@ module.exports.detail = async (req, res) => {
         
         const product = await Product.findOne(find);
         const account = await Account.findOne({ _id: product.createdBy.account_id });
+        const brand = await Brand.findOne({ _id: product.brand_id });
+        console.log(brand);
+        if(brand){
+            product.brandName = brand.title;
+        }
+        const category = await Category.findOne({ _id: product.category_id });
+        if (category) {
+            product.categoryName = category.title;
+        }
             if(account){
                 product.accountName = account.fullname;
                 

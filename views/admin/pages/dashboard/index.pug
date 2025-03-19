@@ -3,10 +3,13 @@ include ../../mixins/alert.pug
 block head    
   link(rel='stylesheet', href='/admin/css/dashboard.css')
 block main 
+  script(src="/admin/js/dashboard.js") 
   +alert-error(expressFlash,5000)
-  +alert-success(expressFlash,5000)  
-  .row.mt-4 
-    
+  +alert-success(expressFlash,5000) 
+  .row.mt-4
+    .card(style="background-color:#18221b")
+      canvas#myChart(width="800" height="400" data-chart= data)
+  .row.mt-4   
     .col-6
       a(href=`${prefixAdmin}/my-account`)  
         .card.mb-4

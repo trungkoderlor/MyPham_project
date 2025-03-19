@@ -1,0 +1,62 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block head
+  link(rel="stylesheet", href="/admin/css/review.css")
+
+block main
+  .card.shadow-lg.border-0.rounded.mt-3.mb-4
+    .card-header.bg-gradient-primary.text-white.text-center.py-4
+      h4 Chi Tiết Đánh Giá
+
+    .card-body.p-4
+      .row.g-4
+        .col-md-5.d-flex.justify-content-center.align-items-center.flex-column
+          img.avatar.mb-3(src=record.userAvatar, alt=record.userName, width="80")
+          h6.text-dark.mb-1 #{record.userName}
+          p.text-muted.small #{record.userEmail}
+          
+        .col-md-7.d-flex.align-items-center
+          img.product-thumbnail(src=record.productThumbnail, alt=record.productTitle, class="me-3")
+          .product-info
+            h5.product-title.text-truncate.mb-2 #{record.productTitle}
+            p.text-muted.font-italic Giá sản phẩm:
+            p.text-primary.mb-0 #{record.productPrice ? record.productPrice.toLocaleString() : "N/A"}$
+            
+      hr
+      .review-info.mt-4
+        h6.text-muted Xếp Hạng:
+        .rating.mb-3
+          for star in [...Array(record.rating).keys()]
+            span.star.text-warning
+              i.fas.fa-star(style="color: #f1c40f;")
+          for empty in [...Array(5 - record.rating).keys()]
+            span.star.text-secondary
+              i.fas.fa-star(style="color: #cdc9c9;")
+
+        h6.text-muted Bình luận:
+        p.text-dark.font-italic.mb-3 #{record.comment || "Không có bình luận."}
+
+        
+
+        if record.image
+          h6.text-muted Ảnh Đính Kèm:
+          img.review-image(src=record.image, alt="Review Image", class="img-fluid rounded shadow-sm mt-2" width="100px")
+        p.text-muted.font-italic.small.mt-3
+          | Ngày gửi: #{record.createdAt.toLocaleDateString()} lúc #{record.createdAt.toLocaleTimeString()}
+
+      hr
+      
+      .button-rv.row.text-center.mt-4
+        .col-4
+          a.btn.btn-sm.btn-outline-primary.rounded-pill.float-left(href=`${prefixAdmin}/reviews`)
+            i.fas.fa-arrow-left.mr-2
+            | Quay lại 
+        .col-4
+          a.btn.btn-sm.btn-outline-success.rounded-pill(href=`/products/${record.productSlug}`) 
+            <i class="fa-solid fa-location-arrow mr-2"></i>
+            | Xem Sản Phẩm
+        .col-4
+          a.btn.btn-sm.btn-outline-primary.rounded-pill.float-right(href=`${prefixAdmin}/reviews/reply/${record.id}`) 
+            i.fas.fa-reply.mr-2
+            | Trả lời
+        

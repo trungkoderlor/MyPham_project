@@ -1,0 +1,47 @@
+extends ../../../client/layouts/default.pug
+include ../../mixins/box-head.pug
+block head 
+  link(rel="stylesheet", href="/css/user/chat.css")
+block main
+  .container.my-3
+    .row
+      .col-12(style="min-height: 50vh;")
+        if !isConnected
+          .connection-prompt
+            | Bạn có muốn kết nối cùng tư vấn viên của chúng tôi?
+            .connection-actions
+              button.btn.btn-primary.btn-connect(my-id = clientUser.id) Kết nối
+              
+        else if isConnecting
+          .connection-status
+            | Đang chờ kết nối với tư vấn viên...
+        
+        .chat(my-id = clientUser.id style="display: none;")
+          .inner-header
+            .chat-title
+              | Trò chuyện trực tuyến với tư vấn viên
+              span.btn-end-chat.float-right
+                | Kết thúc
+          .inner-body
+            each chat in chats
+              div(class=(chat.user_id == clientUser.id ? "inner-outgoing" : "inner-incoming"))
+                .inner-content
+                  | #{chat.content}
+            .inner-list-tying
+          .inner-foot
+            form(
+              class="inner-form"
+              action
+            )
+              input(
+                type="text"
+                class="inner-input"
+                placeholder="Nhập tin nhắn..."
+                name="content"
+              )
+              span.icon-button.btn.btn-light
+                <i class="fa-regular fa-face-smile"></i>
+              button(type="submit" class="inner-submit")
+                i.fa-solid.fa-paper-plane
+        div(class="tooltip" role="tooltip" style="display: none")
+          emoji-picker.light

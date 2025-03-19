@@ -23,6 +23,7 @@ router.patch('/trash/restore/:id', Controller.restore);
 router.get('/detail/:id', Controller.detail);
 router.get('/edit/:id', Controller.edit);
 router.patch('/edit/:id',
+    validate.createPost,
     upload.single("avatar"),
      Controller.editPatch);
 module.exports = router;

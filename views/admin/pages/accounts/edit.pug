@@ -7,7 +7,7 @@ block main
   if(role.permissions.includes('account_edit'))
     +alert-error(expressFlash,5000)
     +alert-success(expressFlash,5000)
-    h1(class="mb-4") Thêm mới tài khoản
+    h1(class="mb-4") Chỉnh sửa tài khoản
     
     form( action=`${prefixAdmin}/accounts/edit/${account.id}?_method=PATCH`
             id="form-edit-account"
@@ -59,7 +59,7 @@ block main
           upload-image-input
         )
         img(
-          src=""
+          src=account.avatar
           class="image-preview"
           upload-image-preview
         )
@@ -109,12 +109,13 @@ block main
           class="btn btn-primary"
         ) Cập nhật
   else
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 
 
 
         

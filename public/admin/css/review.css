@@ -1,0 +1,112 @@
+/* General Styling */
+body {
+  background: #f4f6f9;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin: 0;
+}
+
+/* Card Styling */
+.card {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+  max-width: 900px;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+/* Avatar */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Thumbnail */
+.product-thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* User and Product Info */
+
+.product-info {
+  flex: 1;
+}
+
+h5.product-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.text-muted {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.text-primary {
+  font-size: 16px;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.text-muted {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Rating */
+.rating .star {
+  font-size: 20px;
+  margin-right: 2px;
+}
+
+.text-warning {
+  color: #ffce31 !important;
+}
+
+.text-secondary {
+  color: #ddd !important;
+}
+
+/* Review Image */
+.review-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button */
+.btn-outline-primary {
+  border-color: #4c6ef5;
+  color: #4c6ef5;
+}
+
+.btn-outline-primary:hover {
+  background: #4c6ef5;
+  color: white;
+}

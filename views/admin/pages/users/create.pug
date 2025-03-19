@@ -1,0 +1,110 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+block head 
+  link(rel='stylesheet', href='/admin/css/form.css')
+block main
+  if(role.permissions.includes('user_create'))
+    +alert-error(expressFlash,5000)
+    +alert-success(expressFlash,5000)
+    h1(class="mb-4") Thêm mới tài khoản người dùng
+    form(action=`${prefixAdmin}/users/create` method="POST" enctype="multipart/form-data")
+      div(class="form-group")
+        label(for="fullname") Họ tên *
+        input(
+          type="text"
+          class="form-control"
+          id="fullname"
+          name="fullname"
+          required
+        )   
+      div(class="form-group")
+        label(for="email") Email *
+        input(
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          required
+        )
+      div(class="form-group")
+        label(for="password") Mật khẩu *
+        input(
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          required
+        )
+
+      div(class="form-group")
+        label(for="phone") Số điện thoại
+        input(
+          type="text"
+          class="form-control"
+          id="phone"
+          name="phone"
+        )
+
+      div(
+        class="form-group" 
+        upload-image
+      )
+        label(for="avatar") Avatar
+        input(
+          type="file"
+          class="form-control-file"
+          id="avatar"
+          name="avatar"
+          accept="image/*"
+          upload-image-input
+        )
+        img(
+          src=""
+          class="image-preview"
+          upload-image-preview
+        )
+        button(
+          type="button"
+          class = 'btn btn-danger btn-sm cancel-image-button-d'
+          cancel-image-button
+          style = "margin-top: 32px;margin-left: 10px;"
+        ) Hủy
+      div(class="form-group form-check form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusActive"
+          name="status"
+          value="active"
+          checked
+        )
+        label(for="statusActive" class="form-check-label") Hoạt động
+
+      div(class="form-group form-check form-check-inline")
+        input(
+          type="radio"
+          class="form-check-input"
+          id="statusInActive"
+          name="status"
+          value="inactive"
+        )
+        label(for="statusInActive" class="form-check-label") Dừng hoạt động
+
+      div(class="form-group")
+        button(
+          type="submit"
+          class="btn btn-primary"
+        ) Tạo mới
+  else
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 
+
+        
+
+

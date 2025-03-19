@@ -16,7 +16,9 @@ block main
             
         h1 Danh Sách Sản Phẩm
         .card.mb-3 
-            .card-header Bộ Lọc và Tìm Kiếm
+            .card-header 
+                <i class="fa-solid fa-filter mr-2"></i>
+                | Bộ Lọc và Tìm Kiếm
             .card-body
                 .row
                     .col-6
@@ -24,7 +26,9 @@ block main
                     .col-6 
                         +search(keywords)
         .card.mb-3 
-            .card-header Danh Sách
+            .card-header 
+                <i class="fa-solid fa-table mr-2"></i>
+                | Danh Sách
             .card-body
                 .row
                     .col-4
@@ -151,6 +155,12 @@ block main
             path=`${prefixAdmin}/products/delete`
         ) 
     else 
-        h1 Bạn không có quyền truy cập
+        .non-permission
+            h1(class="mb-4") Bạn không có quyền truy cập trang này
+            p Vui lòng liên hệ quản trị viên để được hỗ trợ
+            a(
+                class = 'btn btn-primary btn-sm'
+                href=`${prefixAdmin}/dashboard`
+            ) Quay lại trang chủ 
     
         

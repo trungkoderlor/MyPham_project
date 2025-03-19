@@ -1,0 +1,40 @@
+extends ../../layouts/default.pug
+block head 
+  link(rel="stylesheet", href="/css/user/chat.css")
+  link(rel="stylesheet", href="/admin/css/chat.css")
+block main
+  script(type='module' src="/admin/js/chat.js") 
+  .container.my-3
+    .row
+      .col-12
+        //- lấy phần tử đầu tiên của chats
+        .chat(admin-id= user.id room-id=roomId client-id=ClientUser.id)
+          .inner-header
+            .chat-title
+              | Trò chuyện trực tuyến với khách hàng 
+              span(style="color:#333") #{ClientUser.fullname}
+              span.btn-end-chat.float-right
+                | Kết thúc 
+          .inner-body
+            each chat in chats
+              div(class=(chat.user_id == ClientUser.id ? "inner-incoming" : "inner-outgoing") )
+                .inner-content
+                  | #{chat.content}
+            .inner-list-tying
+          .inner-foot
+            form(
+              class="inner-form"
+              action
+            )
+              input(
+                type="text"
+                class="inner-input"
+                placeholder="Nhập tin nhắn..."
+                name="content"
+              )
+              span.icon-button.btn.btn-light
+                <i class="fa-regular fa-face-smile"></i>
+              button(type="submit" class="inner-submit")
+                i.fa-solid.fa-paper-plane
+        div(class="tooltip" role="tooltip" style="display:none")
+          emoji-picker.light

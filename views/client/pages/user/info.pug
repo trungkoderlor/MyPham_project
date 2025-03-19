@@ -2,14 +2,96 @@ extends ../../../client/layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/alert.pug
 include ../../mixins/product-layout.pug
+block head  
+  link(rel="stylesheet", href="/css/user/info.css")
 block main
   script(src="/js/cart.js") 
-  
-  .container.my-3
-    +alert-success(expressFlash, 5000)
-    +alert-error(expressFlash, 5000)
-    .row.justify-content-center
-      .col-4
-        +box-head('Thông tin tài khoản')
-  .container.my-3
-    p #{user}
+  .container-fluid.account-detail(style="min-height: 100vh")
+    .row
+      // Sidebar
+      .col-md-3.bg-light.p-3(style="min-height:100vh;")
+        h5.sidebar-title.mb-4 Tài khoản của tôi
+        ul.nav.flex-column
+          li.nav-item
+            a.nav-link.active(href="#account-info") Thông tin tài khoản
+          li.nav-item
+            a.nav-link(href="#profile") Sửa hồ sơ
+          li.nav-item
+            a.nav-link(href="#password") Đổi mật khẩu
+          li.nav-item
+            a.nav-link(href="/user/history-orders") Đơn hàng
+
+      // Main Content
+      .col-md-9.p-4
+        .tab-content
+          // Account Info Tab
+          #account-info.tab-pane.fade.show.active
+            h3.mb-4 Thông Tin Tài Khoản
+            .row
+              .col-md-4.text-center
+                img.avatar-img(src=clientUser.avatar || "https://via.placeholder.com/150" alt="Avatar" width="150")
+              .col-md-8
+                if clientUser.fullname
+                  p.mb-2
+                    strong Họ tên: 
+                    | #{clientUser.fullname}
+                p.mb-2
+                  strong Email: 
+                  | #{clientUser.email}
+                p.mb-2
+                  strong Số điện thoại: 
+                  | #{clientUser.phone}
+                if clientUser.address
+                  p.mb-2
+                    strong Địa chỉ: 
+                    | #{clientUser.address}
+                p.mb-2
+                  strong Trạng thái: 
+                  span.text-success= clientUser.status === 'active' ? 'Hoạt động' : 'Tạm khóa'
+
+          // Profile Tab
+          #profile.tab-pane.fade.mb-4
+            h3.mb-4 Sửa Hồ Sơ
+            form(action="/user/info/edit" method="post" enctype="multipart/form-data")
+              .mb-3
+                .mt-3.text-center
+                  img#avatar-preview.avatar-preview(src=clientUser.avatar || 'https://via.placeholder.com/150', alt="Preview Avatar", width="150", height="150", style="border-radius: 50%; object-fit: cover;")
+                label(for="avatar") Avatar 
+                input#avatar.form-control(type="file" name="avatar" accept="image/*")
+
+                
+              .mb-3
+                label(for="fullname") Họ tên
+                input#fullname.form-control(type="text" name="fullname" value=clientUser.fullname placeholder="Nhập họ tên")
+              .mb-3
+                label(for="email") Email
+                  span.text-danger *
+                input#email.form-control(type="email" name="email" value=clientUser.email placeholder="Nhập email")
+              .mb-3
+                label(for="phone") Số điện thoại
+                  span.text-danger *
+                input#phone.form-control(type="text" name="phone" value=clientUser.phone placeholder="Nhập số điện thoại")
+              .mb-3
+                label(for="address") Địa chỉ
+                input#address.form-control(type="text" name="address" value=clientUser.address placeholder="Nhập địa chỉ")
+              
+              button.btn.btn-primary(type="submit") Lưu thay đổi
+
+          // Password Tab
+          #password.tab-pane.fade
+            h3.mb-4 Đổi Mật Khẩu
+            form#change-password-form(action="/user/info/change-password" method="post")
+              .mb-3
+                label(for="old-password") Mật khẩu cũ
+                  span.text-danger *
+                input#old-password.form-control(type="password" name="password1" placeholder="Nhập mật khẩu cũ")
+              .mb-3
+                label(for="new-password") Mật khẩu mới
+                  span.text-danger *
+                input#new-password.form-control(type="password" name="password2" placeholder="Nhập mật khẩu mới")
+              .mb-3
+                label(for="confirm-password") Xác nhận mật khẩu
+                  span.text-danger *
+                input#confirm-password.form-control(type="password" name="password3" placeholder="Nhập lại mật khẩu")
+                p#password-error.text-danger.mt-2(style="display: none;") Mật khẩu và mật khẩu xác nhận không khớp.
+              button.btn.btn-primary(type="submit") Đổi mật khẩu

@@ -8,7 +8,7 @@ block main
     +alert-success(expressFlash,5000) 
     .row
       .col-md-12
-        .card.mb-3
+        .card.mb-3.mt-4
           .card-header
             h3.card-title Chi Tiết Đơn Hàng
           .card-body
@@ -21,9 +21,6 @@ block main
                     p
                       strong Tên Khách Hàng:
                       |  #{order.userInfo.name}
-                    p
-                      strong Email:
-                      |  #{order.userInfo.email}
                     p
                       strong Địa Chỉ:
                       |  #{order.userInfo.address}
@@ -41,6 +38,12 @@ block main
                     p
                       strong Ngày Đặt:
                       |  #{order.createdAt.toLocaleString()}
+                    p 
+                      strong Phương Thức Thanh Toán:
+                      if (order.paymentMethod=="cod")
+                        |  Thanh Toán Khi Nhận Hàng
+                      else
+                        |  Chuyển Khoản
                     p
                       strong Trạng Thái:
                         if (order.status=="pending")
@@ -51,14 +54,48 @@ block main
                             data-id=order.id 
                             data-status=order.status                    
                           ) Chờ Gửi Hàng
+                          form.float-right(action=`${prefixAdmin}/orders/detail/${order._id}/confirm`, method="post") 
+                            button.btn.btn-primary.btn-sm.ml-2(
+                              type="submit"
+                              id="confirm-order-btn"
+                              data-id=order.id
+                            ) Xác nhận Đơn Hàng
                         else if (order.status=="shipping")
                           a(
                             href="javascript:" 
                             class="badge badge-warning"
                             button-change-status 
-                            data-id=useorderr.id 
+                            data-id=order.id 
                             data-status=order.status
                           ) Đang Giao Hàng
+                          form.float-right(action=`${prefixAdmin}/orders/detail/${order._id}/confirmShipped`, method="post") 
+                            button.btn.btn-success.btn-sm.ml-2(
+                              type="submit"
+                              id="confirm-shipped-order-btn"
+                              data-id=order.id
+                            ) Xác nhận Đơn Hàng Đã Giao
+                        else if (order.status=="shipped")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-primary"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status
+                          ) Đã Giao Hàng  
+                        else if (order.status=="unreceived")
+                          a(
+                            href="javascript:" 
+                            class="badge badge-dark"
+                            button-change-status 
+                            data-id=order.id 
+                            data-status=order.status
+                          ) Chưa Nhận Được Hàng
+                          form.float-right(action=`${prefixAdmin}/orders/detail/${order._id}/processed`, method="post") 
+                            button.btn.btn-success.btn-sm.ml-2(
+                              type="submit"
+                              id="confirm-shipped-order-btn"
+                              data-id=order.id
+                            ) Xác nhận Đã Xử Lý
                         else if (order.status=="completed")
                           a(
                             href="javascript:" 
@@ -84,7 +121,9 @@ block main
                     thead
                       tr
                         th STT
+                        th Hình Ảnh
                         th Tên Sản Phẩm
+                        
                         th Số Lượng
                         th Giá
 
@@ -94,16 +133,20 @@ block main
                       each product, index in order.products
                         tr.orderProduct
                           td= index + 1
+                          td  
+                            img(src=`${product.productInfo.thumbnail}`, alt=`${product.productInfo.title}`, width="50")
                           td #{product.productInfo.title}
+                          
                           td #{product.quantity}
                           td #{product.price}$
                           td #{product.discountPercentage}%
                 else
                   p No products found.
   else
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 

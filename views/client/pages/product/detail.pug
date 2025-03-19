@@ -19,12 +19,11 @@ block main
                 +rating(product) 
               .row.border(style="margin-top: 20px")
                 h5.brand(style="margin-top: 20px") Thương hiệu 
-                h6 #{product.brand} 
+                h6 #{brand.title} 
                 h5(style="margin-top: 20px") Danh mục: 
-                  each tag in product.tags
-                    span.badge.badge-primary(style="margin-right: 5px") #{tag}           
+                  span.badge.badge-primary(style="margin-right: 5px") #{category.title}           
                 h5(style="margin-top: 20px") Mô tả sản phẩm
-                p(style="margin-top: 10px") #{product.description}
+                p(style="margin-top: 10px") !{product.description}
               form(action=`/cart/add/${product.id}`, method="POST")   
                 .row.border(style="margin-top: 20px; padding-bottom: 20px;")
                   h5(style="margin-top: 20px") Tình trạng
@@ -53,12 +52,16 @@ block main
       .row.reviews 
         .col-12
           h5 Đánh giá của người dùng
-          h1 #{product.reviews.length} Đánh giá
+          h3 #{product.reviews.length} Đánh giá
           each review in product.reviews
-            .review
-              h6 #{review.reviewerName} 
+            .review(id=review.id)
+              .user-info-review.d-flex.align-items-center.mb-2(style="margin-top: 20px;")
+                img(src=review.avatar, alt="Avatar" width="30px" class="avatar me-3")
+                h6(style="margin: 0;") #{review.reviewerName}
               +rating(review)
-              p #{review.comment}
-              p #{review.created}
+              p.mb-4 #{review.comment}
+              if review.image
+                img.mb-4(src=review.image, alt="Review Image", class="review-image" width="100px")
+              p #{review.createdAt.toLocaleString()}
 
                                   

@@ -7,7 +7,7 @@ include ../../mixins/moment.pug
 block head 
   link(rel='stylesheet', href='/admin/css/product.css')
 block main
-  if(role.permissions.includes('user_view'))
+  if(role.permissions.includes('user_trash'))
     +alert-error(expressFlash,5000)
     +alert-success(expressFlash,5000) 
     script(src="/admin/js/product.js") 
@@ -41,51 +41,51 @@ block main
                     th Ngày Xóa
                     th Thao Tác
                 tbody
-                  each user,index in records
+                  each a_user,index in records
                     tr
                       td= index + 1
                       td 
-                        img(src=user.avatar, alt='Avatar', width='50px', height='50px')
-                      td= user.fullname
+                        img(src=a_user.avatar, alt='Avatar', width='50px', height='50px')
+                      td= a_user.fullname
                       
                       
-                      td= user.email
+                      td= a_user.email
                       td 
-                        if (user.status=="active")
+                        if (a_user.status=="active")
                           a(
                             href="javascript:" 
                             class="badge badge-success"
                             button-change-status 
-                            data-id=user.id 
-                            data-status=user.status                    
+                            data-id=a_user.id 
+                            data-status=a_user.status                    
                           ) Hoạt động
                         else 
                           a(
                             href="javascript:" 
                             class="badge badge-danger"
                             button-change-status 
-                            data-id=user.id 
-                            data-status=user.status
+                            data-id=a_user.id 
+                            data-status=a_user.status
                           ) Không hoạt động
-                      td #{user.accountName}
+                      td #{a_user.accountName}
                       td 
-                        +formatDate(user.deletedBy.deletedAt)
+                        +formatDate(a_user.deletedBy.deletedAt)
                       td
                         a(
                           class = 'btn btn-secondary btn-sm'
-                          href=`${prefixAdmin}/users/detail/${user.id}`
+                          href=`${prefixAdmin}/users/detail/${a_user.id}`
                         ) 
                           i.fas.fa-eye.mr-1
                         button(
                           class = 'btn btn-success btn-sm ml-1'
                           button-restore
-                          data-id=user.id
+                          data-id=a_user.id
                         ) 
                           i.fas.fa-trash-restore-alt.mr-1
                         button(
                           class = 'btn btn-danger btn-sm ml-1'
                           button-delete
-                          data-id=user.id
+                          data-id=a_user.id
                         ) 
                           i.fas.fa-trash-alt.mr-1
             else
@@ -110,9 +110,10 @@ block main
           path=`${prefixAdmin}/users/trash/restore`
           )
   else 
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 

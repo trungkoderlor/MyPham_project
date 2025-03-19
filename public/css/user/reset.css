@@ -1,0 +1,81 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #EAF5F6;
+  max-height: 100vh;
+  background-image:
+      radial-gradient(at 61% 4%, rgb(212, 202, 211) 0px, transparent 50%),
+      radial-gradient(at 75% 66%, hsla(196, 91%, 79%, 1) 0px, transparent 50%),
+      radial-gradient(at 98% 88%, hsla(76, 87%, 78%, 1) 0px, transparent 50%),
+      radial-gradient(at 23% 16%, rgb(164, 166, 235) 0px, transparent 50%),
+      radial-gradient(at 95% 65%, rgb(215, 236, 179) 0px, transparent 50%),
+      radial-gradient(at 10% 79%, rgb(91, 113, 203) 0px, transparent 50%),
+      radial-gradient(at 85% 58%, rgb(229, 159, 197) 0px, transparent 50%) !important;
+}
+
+.container {
+  
+  max-width: 700px;
+  margin: auto;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  background-color: rgb(207, 215, 245);
+  
+}
+.card-header{
+  padding: 10px;
+  border-radius: 15px !important;
+}
+h1.text-center {
+  font-size: 28px;
+  font-weight: 700;
+  color: #093030;
+  margin-bottom: 25px;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #093030;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  border: 1px solid #d5dae2;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #093030;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3DAFE1;
+  box-shadow: 0 0 5px rgba(61, 175, 225, 0.3);
+}
+
+.btn-primary {
+  background-color: #093030;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #3DAFE1;
+  box-shadow: 0 4px 10px rgba(61, 175, 225, 0.3);
+}

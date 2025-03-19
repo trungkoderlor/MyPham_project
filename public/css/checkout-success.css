@@ -1,0 +1,81 @@
+/* Tổng thể */
+.checkout-success {
+  font-family: 'Inter', sans-serif;
+ 
+  color: #333;
+  padding: 1.5rem; /* Giảm padding */
+}
+
+.checkout-success .alert {
+  font-size: 0.875rem; /* Chữ nhỏ hơn */
+  padding: 0.75rem 1rem; /* Giảm padding trong */
+  border-radius: 6px; /* Bo góc nhỏ */
+}
+
+.checkout-success h4 {
+  font-size: 1rem; /* Chữ nhỏ hơn */
+  font-weight: 600;
+  margin-bottom: 0.75rem; /* Giảm khoảng cách */
+  color: #1e2022;
+}
+
+.checkout-success table {
+  font-size: 0.875rem; /* Chữ nhỏ trong bảng */
+  margin-bottom: 1rem;
+  border-radius: 6px; /* Bo góc nhẹ */
+  overflow: hidden;
+}
+
+.checkout-success .table-bordered {
+  border: 1px solid #dee2e6; /* Viền mỏng */
+}
+
+.checkout-success .table thead th {
+  background-color: #007bff; /* Màu xanh hiện đại */
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.5rem; /* Giảm padding */
+  font-size: 0.75rem; /* Chữ nhỏ hơn */
+}
+
+.checkout-success .table tbody td {
+  padding: 0.5rem; /* Thu gọn ô */
+  vertical-align: middle; /* Căn giữa nội dung */
+}
+
+.checkout-success .table img {
+  border-radius: 6px;
+  max-width: 60px; /* Ảnh nhỏ hơn */
+  
+}
+
+/* Tổng tiền */
+.checkout-success h3.text-right {
+  font-size: 1rem; /* Chữ nhỏ */
+  font-weight: 700;
+  color: #007bff; /* Màu nổi bật */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-success {
+    padding: 1rem;
+  }
+
+  .checkout-success table {
+    font-size: 0.75rem; /* Chữ nhỏ hơn trên màn hình nhỏ */
+  }
+
+  .checkout-success h4 {
+    font-size: 0.875rem; /* Tiêu đề nhỏ hơn */
+  }
+
+  .checkout-success .alert {
+    font-size: 0.75rem;
+  }
+
+  .checkout-success h3.text-right {
+    font-size: 0.875rem; /* Tổng tiền nhỏ hơn */
+  }
+}

@@ -56,15 +56,74 @@ block main
           required
         )
       div(class="form-group")
-      label(for="email") Email
-      input(
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-        value = settingGeneral.email ? settingGeneral.email : ''
-        required
-      )
+        label(for="phone") Địa chỉ
+        input(
+          type="text"
+          class="form-control"
+          id="address"
+          name="address"
+          value = settingGeneral.address ? settingGeneral.address : ''
+          required
+        )
+      div(class="form-group")
+        label(for="phone") Facebook
+        input(
+          type="text"
+          class="form-control"
+          id="facebook"
+          name="facebook"
+          value = settingGeneral.facebook ? settingGeneral.facebook : ''
+          required
+        )
+      div(class="form-group")
+        label(for="phone") Twitter
+        input(
+          type="text"
+          class="form-control"
+          id="twitter"
+          name="twitter"
+          value = settingGeneral.twitter ? settingGeneral.twitter : ''
+          required
+        )
+      div(class="form-group")
+        label(for="phone") Instagram
+        input(
+          type="text"
+          class="form-control"
+          id="instagram"
+          name="instagram"
+          value = settingGeneral.instagram ? settingGeneral.instagram : ''
+          required
+        )
+      div(class="form-group")
+        label(for="email") Email
+        input(
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          value = settingGeneral.email ? settingGeneral.email : ''
+          required
+        )
+      div(class="form-group")
+        label(for="email") Mô tả ngắn
+        input(
+          type="text"
+          class="form-control"
+          id="s_desc"
+          name="s_desc"
+          value = settingGeneral.s_desc ? settingGeneral.s_desc : ''
+          required
+        )
+      div(class="form-group")
+        label(for="email") Mô tả 
+        textarea(
+          class="form-control textarea-mce"
+          id="desc"
+          name="desc"
+          
+          required
+        ) #{settingGeneral.desc ? settingGeneral.desc : ''}
       div(class="form-group")
         label(for="coppyright") Coppyright
         input(
@@ -72,7 +131,7 @@ block main
           class="form-control"
           id="coppyright"
           name="coppyright"
-          value  = settingGeneral.coppyright ? settingGeneral.coppyright : ''
+          value=settingGeneral.coppyright ? settingGeneral.coppyright : ''
           required
         )
       div(class="form-group")
@@ -81,11 +140,11 @@ block main
           class="btn btn-primary"
         ) Cập nhật
   else 
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
-
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 
         

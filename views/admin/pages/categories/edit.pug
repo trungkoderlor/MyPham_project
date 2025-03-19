@@ -113,4 +113,10 @@ block main
 
         script(src="/admin/js/product.js")
     else 
-        h1 Bạn không có quyền truy cập
+        .non-permission
+            h1(class="mb-4") Bạn không có quyền truy cập trang này
+            p Vui lòng liên hệ quản trị viên để được hỗ trợ
+            a(
+                class = 'btn btn-primary btn-sm'
+                href=`${prefixAdmin}/dashboard`
+            ) Quay lại trang chủ 

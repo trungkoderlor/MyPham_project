@@ -1,0 +1,131 @@
+.not-in-room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f0f9ff, #cbebff);
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+.not-in-room-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.not-in-room-message {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.not-in-room-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.not-in-room-button:hover {
+  background-color: #0056b3;
+}
+.body{
+  background: linear-gradient(135deg, #333, #4ca1af);
+  padding: 20px 0;
+}
+.container{
+  margin: 0px !important;
+}
+.inner-header{
+  background: #4ca1af !important;
+  padding: 10px 0;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.inner-outgoing .inner-content{
+  background: #4ca1af !important;
+  
+}
+/* Nền tối mờ */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Ẩn overlay ban đầu */
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Hộp xác nhận */
+.confirm-box {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Tiêu đề */
+.confirm-box h2 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+}
+
+/* Nội dung thông báo */
+.confirm-box p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Nút có */
+.confirm-box .btn-yes {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-box .btn-yes:hover {
+  background-color: #218838;
+}
+
+/* Nút không */
+.confirm-box .btn-no {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-box .btn-no:hover {
+  background-color: #c82333;
+}
+.noti-end-chat{
+  color: #333;
+  margin: 10px;
+  text-align: center;
+}
+.btn-end-chat{
+  cursor: pointer;
+}

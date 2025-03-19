@@ -1,78 +1,78 @@
 extends ../../../client/layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/product-layout.pug
+
+block head
+  link(rel="stylesheet", href="/css/checkout.css")
+
 block main
-  script(src="/js/cart.js") 
-  .container.my-3
-    .row
-      .col-12
-        +box-head('Thanh Toán')
-  .container.my-3
-    .row
-      .col-12
-        .table-responsive
-          table.table.table-bordered.table-hover
-            thead
-              tr
-                th STT
-                th Ảnh
-                th Tên
-                th Giá
-                th Số lượng
-                th Tổng
-                
-            tbody
-              each item, index in cart.products
-                tr
-                  td #{index+1}
-                  td
-                    img(src=item.productInfo.thumbnail width=100)
-                  td #{item.productInfo.title}
-                    
-                  td  #{item.productInfo.priceNew}$
-                    
-                  td #{item.quantity}
-                    
-                  td #{item.totalPrice}$             
-      h3(class="text-right") Tổng tiền: #{cart.totalPrice}$
-    if (cart.products.length > 0)
+  script(src="/js/cart.js")
+  .container.checkout-body
+    .container.my-3
       .row
         .col-12
-          .card.p-4.my-4
-            form(action="/checkout/order" method="POST")
-              div(class="form-group")
-                label(for="name") Họ tên
-                input(
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  name="name"
-                  required
-                )
-              div(class="form-group")
-                label(for="phone") Số điện thoại
-                input(
-                  type="text"
-                  class="form-control"
-                  id="phone"
-                  name="phone"
-                  required
-                )
-              div(class="form-group")
-                label(for="address") Địa chỉ
-                input(
-                  type="text"
-                  class="form-control"
-                  id="address"
-                  name="address"
-                  required
-                )
-              div(class="form-group")
-                button(
-                  type="submit"
-                  class="btn btn-success btn-block"
-                ) ĐẶT HÀNG
-
-
-      
-    
+          .table-responsive
+            table.table.table-bordered.table-hover
+              thead
+                tr
+                  th STT
+                  th Ảnh
+                  th Tên
+                  th Giá
+                  th Số lượng
+                  th Tổng
+              tbody
+                each item, index in cart.products
+                  tr
+                    td #{index+1}
+                    td
+                      img(src=item.productInfo.thumbnail width=50)
+                    td
+                      a(href=`/products/detail/${item.productInfo.slug}`) #{item.productInfo.title}
+                    td #{item.productInfo.priceNew}$
+                    td #{item.quantity}
+                    td #{item.totalPrice}$
+        h3(class="text-right") Tổng tiền: #{cart.totalPrice}$
+        
+      if (cart.products.length > 0)
+        .row
+          .col-12
+            .card.p-4.my-4
+              h4.mb-4 Thông tin thanh toán
+              form(action="/checkout/order" method="POST")
+                .form-group
+                  label(for="name") Họ tên
+                  input#name.form-control(type="text" name="name" value=clientUser.fullname required)
+                .form-group
+                  label(for="phone") Số điện thoại
+                  input#phone.form-control(type="text" name="phone" value=clientUser.phone required)
+                .form-group
+                  label(for="address") Địa chỉ
+                  input#address.form-control(type="text" name="address" value=clientUser.address required)
+                .form-group
+                  label Phương thức thanh toán
+                  .payment-options
+                    label.payment-option
+                      input(type="radio" name="paymentMethod" value="cod" checked)
+                      span.radio-btn
+                      | Thanh toán khi nhận hàng
+                    label.payment-option
+                      input(type="radio" name="paymentMethod" value="transfer")
+                      span.radio-btn
+                      | Chuyển khoản
+                .form-group#transfer-info(style="display: none;")
+                  img(src="/images/qr-code.png" alt="QR Code" width="200" class="d-block mx-auto my-3")
+                  p.text-center
+                    | Vui lòng chuyển khoản vào tài khoản ngân hàng:
+                    br
+                    strong Tên tài khoản: Công ty DHT
+                    br
+                    strong Số tài khoản: 123456789
+                    br
+                    strong Ngân hàng: Techcombank
+                    br
+                    strong Nội dung chuyển khoản: Ghi rõ số điện thoại và họ tên của bạn
+                  p.text-muted.text-center
+                    | ! Việc chuyển khoản sẽ được xác nhận trong vòng 24h,sau khi xác nhận bạn sẽ nhận được email thông báo và sản phẩm sẽ được giao cho đơn vị vận chuyển.
+                .form-group
+                  button(type="submit" class="btn btn-success btn-block") ĐẶT HÀNG

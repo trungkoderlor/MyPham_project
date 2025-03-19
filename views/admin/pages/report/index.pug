@@ -1,0 +1,75 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block head    
+  link(rel='stylesheet', href='/admin/css/dashboard.css')
+
+block main
+  +alert-error(expressFlash,5000)
+  +alert-success(expressFlash,5000)
+  script(src="/admin/js/report.js") 
+  // Thanh lọc ngày ở phía trên
+  .filter-bar.mb-4.p-3.border.rounded.bg-light.mt-4
+    .row.mb-4
+      h1.text-center Báo Cáo
+      .inner-dir
+    .row.align-items-center
+      .col-md-2
+      .col-md-4
+        label(for='dateStart') Ngày Bắt Đầu
+        input(type='date' id='dateStart' class='form-control' placeholder='Chọn ngày bắt đầu')
+      .col-md-4
+        label(for='dateEnd') Ngày Kết Thúc
+        input(type='date' id='dateEnd' class='form-control' placeholder='Chọn ngày kết thúc')
+      .col-md-2
+        button.btn.btn-primary.mt-4#filterButton Lọc
+  .row
+    // Các biểu đồ bên dưới
+    .col-6
+      .card.mb-4
+        .card-header.bg-primary.text-white
+          h3.card-title Báo Cáo Doanh Thu
+        .card-body
+          canvas#revenueChart(style="max-width:600px; max-height:400px" data-chart=revenueChartData)
+    .col-6
+      .card.mb-4
+        .card-header.bg-success.text-white
+          h3.card-title Báo Cáo Sản Phẩm
+        .card-body
+          canvas#myChartProduct(width='800' height='400' data-chart=dataProduct)
+    .col-6
+      .card.mb-4
+        .card-header.bg-info.text-white
+          h3.card-title Báo Cáo Đơn Hàng
+        .card-body
+          canvas#myChartOrder(width='800' height='400' data-chart=dataOrder)
+    .col-6
+      .card.mb-4
+        .card-header.bg-warning.text-dark
+          h3.card-title Báo Cáo Người Dùng
+        .card-body
+          canvas#myChartUser(width='800' height='400' data-chart=dataUser)
+    .col-6
+      .card.mb-4
+        .card-header.bg-secondary.text-white
+          h3.card-title Báo Cáo Đánh Giá
+        .card-body
+          canvas#myChartReview(width='800' height='400' data-chart=dataReview)
+    .col-6
+      .card.mb-4
+        .card-header.bg-danger.text-white
+          h3.card-title Báo Cáo Số Lượng Sản Phẩm
+        .card-body
+          canvas#myChartQuantityProduct(width='800' height='400' data-chart=dataQuantityProduct)
+    .col-6
+      .card.mb-4
+        .card-header.bg-dark.text-white
+          h3.card-title Báo Cáo Số Lượng Đơn Hàng
+        .card-body
+          canvas#myChartQuantityOrder(width='800' height='400' data-chart=dataQuantityOrder)
+    .col-6
+      .card.mb-4
+        .card-header.bg-light.text-dark
+          h3.card-title Báo Cáo Số Lượng Người Dùng
+        .card-body
+          canvas#myChartQuantityUser(width='800' height='400' data-chart=dataQuantityUser)

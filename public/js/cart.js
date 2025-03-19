@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const inputsQuantity = document.querySelectorAll("input[name='quantity']");
-  if(inputsQuantity){
+  if (inputsQuantity) {
     inputsQuantity.forEach(input => {
       input.addEventListener("change", async (e) => {
         const quantity = input.value;

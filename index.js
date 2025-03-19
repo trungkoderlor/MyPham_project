@@ -11,10 +11,18 @@ const route = require('./routes/client/index.route');
 const routeAdmin = require('./routes/admin/index.route');
 const app = express();
 const database = require('./config/database');
+const favicon = require('serve-favicon');
+const http = require('http');
+const { Server } = require("socket.io");
 //pug
 app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 //end pug
+// tinymce 
+app.use(
+    '/tinymce',
+    express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+//end tinymce
 require('dotenv').config();
 app.use(express.static(`${__dirname}/public`));
 app.use(methodOverride('_method')); //override method
@@ -40,9 +48,28 @@ app.set("view engine", "pug");
 app.use(express.static("public"));
 app.use(express.static(`${__dirname}/public`));
 //end public
+//favicon
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
+app.use((req, res, next) => {
+    if (req.originalUrl === '/favicon.ico') {
+      res.status(204).end();
+    } else {
+      next();
+    }
+  });
+//end favicon
+//socket io
+const server = http.createServer(app);
+const io = new Server(server);
+global._io = io;
+
+require('./config/socket')(io);
+
+//end socket io
 //route
 route(app);
 routeAdmin(app);
+
 //end route
 //404
 app.get("*", (req, res)=>{
@@ -56,6 +83,8 @@ app.locals.prefixAdmin = system.prefixAdmin;
 app.locals.moment = moment;
 route(app);
 routeAdmin(app);
-app.listen(port, ()=>{
+//end app location var
+
+server.listen(port, ()=>{
   console.log(`Server is running at http://localhost:${port}`);
 })

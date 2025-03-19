@@ -13,7 +13,8 @@ block main
       .account-header
         h1 Chi Tiết Tài Khoản
         .account-actions
-          a.btn-edit(href=`${prefixAdmin}/accounts/edit/${account.id}`) Edit
+          a.btn-edit(href=`${prefixAdmin}/accounts/edit/${account.id}`)
+            i.fas.fa-edit  
       .account-info
         .account-avatar
           img(src=account.avatar alt="Avatar")
@@ -55,10 +56,11 @@ block main
           span.label Ngày cập nhật:
           span.value #{account.updatedAt.toLocaleString()}
   else
-    h1(class="mb-4") Bạn không có quyền truy cập trang này
-    p Vui lòng liên hệ quản trị viên để được hỗ trợ
-    a(
-      class = 'btn btn-primary btn-sm'
-      href=`${prefixAdmin}/dashboard`
-    ) Quay lại trang chủ 
+    .non-permission
+      h1(class="mb-4") Bạn không có quyền truy cập trang này
+      p Vui lòng liên hệ quản trị viên để được hỗ trợ
+      a(
+        class = 'btn btn-primary btn-sm'
+        href=`${prefixAdmin}/dashboard`
+      ) Quay lại trang chủ 
       

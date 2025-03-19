@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
+    order_id: String,
     user_id: String,
     product_id: String,
-    ratting : double,
+    rating : Number,
     comment: String,
+    image: String,
     deleted: {
         type: Boolean,
         default: false
@@ -12,5 +14,5 @@ const reviewSchema = new mongoose.Schema({
 },{
     timestamps: true
 });
-const Review = mongoose.model('Review', cartSchema, 'reviews');
+const Review = mongoose.model('Review', reviewSchema, 'reviews');
 module.exports = Review;

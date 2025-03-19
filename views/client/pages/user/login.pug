@@ -1,44 +1,41 @@
-extends ../../../client/layouts/default.pug
+extends ../../../client/layouts/user.pug
 include ../../mixins/box-head.pug
 include ../../mixins/alert.pug
 include ../../mixins/product-layout.pug
+block head 
+    link(rel="stylesheet", href="/css/user/login.css")
+    
 block main
-  script(src="/js/cart.js") 
-  
-  .container.my-3
-    +alert-success(expressFlash, 5000)
-    +alert-error(expressFlash, 5000)
-    .row.justify-content-center
-      .col-4
-        +box-head('Đăng Nhập')
-  .container.my-3
-    .row.justify-content-center
-      .col-8
-        .card.p-4.my-4
-          form(action="/user/login" method="POST")
-            div(class="form-group")
-              label(for="email") Email
-              input(
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                required
-              )
-            div(class="form-group")
-              label(for="password") Mật khẩu
-              input(
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                required
-              )
-            div(class="form-group")
-              button(
-                type="submit"
-                class="btn btn-primary "
-                style="width: 100%"
-                width 
-              ) Đăng Nhập
-          a(href="/user/password/forgot") Quên mật khẩu?
+  script(src="/js/cart.js")
+  +alert-popup(expressFlash, 5000)
+  .container.my-5
+
+  .main.d-flex.align-items-center.min-vh-100.py-3.py-md-0.mb-4
+      .container
+        .card.login-card
+          .row.no-gutters
+            .col-md-5
+              a(href="/")
+                img.login-card-img(src="/images/login.png" alt="login")
+            .col-md-7
+              .card-body
+                .brand-wrapper
+                  a(href="/" style="text-decoration: none ; color: black")
+                    img.logo(src="/images/dhtlogo-removebg.png" alt="logo")
+                    span.ml-2 Mỹ Phẩm DHT
+                p.login-card-description Đăng Nhập Tài Khoản
+                form(action="/user/login" method="POST")
+                  .form-group
+                    label.sr-only(for="email") Email
+                    input#email.form-control(type="email" name="email" placeholder="Nhập email của bạn" required)
+                  .form-group.mb-4
+                    label.sr-only(for="password") Mật Khẩu
+                    input#password.form-control(type="password" name="password" placeholder="Nhập mật khẩu của bạn" required)
+                  button#login.btn.btn-block.login-btn.mb-4(type="submit"  ) Đăng Nhập
+                a.forgot-password-link(href="/user/password/forgot") Quên mật khẩu?
+                p.login-card-footer-text 
+                  | Chưa có tài khoản? 
+                  a.text-reset(href="/user/register") Đăng ký
+                nav.login-card-footer-nav
+                  a(href="#!") Terms of use.
+                  a(href="#!") Privacy policy

@@ -1,4 +1,7 @@
 /* Header */
+body{
+  min-height: 100vh;
+}
 .header {
     position: sticky;
     top: 0;
@@ -102,6 +105,7 @@
     top: 56px;
     left: 0;
     font-size: 14px !important;
+    z-index: 1000;
 }
 .row{
     margin:0;
@@ -112,6 +116,7 @@
     left :210px;
     width: calc(95% - 180px);
     margin: 0px;
+    min-height: 70vh;
 }
 /* Sidebar inner menu */
 .sider .inner-menu {
@@ -193,6 +198,9 @@
   padding: 1.5rem 0;
   font-size: 0.85rem;
   text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-container {
@@ -638,5 +646,378 @@ ul.update-list li::before {
   background-color: #b5d0d4 !important;
   color: #332929 !important;
 } 
+/* non-permission */
+.non-permission a{
+  margin-top:20px;
+}
+.non-permission a:hover{
+  color: #000;
+}
+.non-permission p{
+  font-size: 1.5rem;
+  color: #e8e6e6;
+}
+/* end non-permission */
+.avatar-admin {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+  z-index: 9999;
+}
 
-          
+/*  */
+.notification-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #007bff;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 1;
+  z-index: 1000;
+  max-width: 250px;
+}
+.notification-toast a{
+  display:flex;
+  align-items: center;
+}
+.notification-toast.hide {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.notification-toast .notification-icon {
+  background: white;
+  color: #007bff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  margin-right: 10px;
+
+}
+
+.notification-toast .notification-content {
+  flex: 1;
+}
+
+.notification-toast .notification-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.notification-toast .notification-message {
+  font-size: 14px;
+}
+.show{
+  display: flex;
+}  
+
+.notification-close i {
+  font-size: 18px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.notification-close i:hover {
+  color: #000;
+}
+/* Phần tử header */
+.header__right {
+  display: flex; /* Sử dụng flex để căn ngang các thành phần */
+  align-items: center; /* Đặt căn giữa theo trục dọc */
+  justify-content: flex-end; /* Đẩy các phần tử về phía bên phải */
+  position: relative; /* Phải đặt relative để các phần tử bên trong có thể dùng absolute */
+}
+
+.notification-wrapper {
+  position: relative; 
+  display: flex; /* Đảm bảo các phần tử con hiển thị theo hàng ngang */
+  align-items: center;
+  margin-right: 20px; /* Khoảng cách với account */
+}
+
+.notification-wrapper .notification-icon {
+  font-size: 24px;
+  color: #555;
+  cursor: pointer;
+  position: relative;
+}
+.notification-wrapper .hide{
+  display: none;
+}
+.notification-wrapper .notification-icon:hover {
+  color: #007bff;
+}
+
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4c4c;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.notification-list {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 350px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; 
+  overflow-y: auto; /* Cho phép cuộn dọc */
+  max-height: 400px;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  transition: all 0.3s ease;
+  color: #333;
+}
+.notification-list::-webkit-scrollbar {
+  width: 8px; /* Độ rộng của scrollbar */
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+  background-color: #bfbfbf; /* Màu của thanh cuộn */
+  border-radius: 10px; /* Góc bo tròn cho scrollbar */
+}
+
+.notification-list::-webkit-scrollbar-thumb:hover {
+  background-color: #8c8c8c; /* Màu khi hover thanh cuộn */
+}
+
+.notification-list::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Nền của khu vực cuộn */
+}
+.notification-list.hide {
+  display: none;
+}
+
+.notification-list .notification-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.notification-list .notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-list .notification-item:hover {
+  background-color: #f9f9f9;
+}
+
+.notification-list .notification-item.unread {
+  background-color: #e6f7ff; 
+}
+
+.notification-list .notification-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.notification-list .notification-item .content {
+  flex: 1;
+}
+
+.notification-list .notification-item .content p {
+  margin: 0;
+  font-size: 14px;
+  
+}
+
+.notification-type {
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.notification-time {
+  font-size: 12px;
+  color: #888;
+}
+
+.notification-content {
+  font-size: 14px;
+  color: #333;
+}
+.notification-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #999; 
+  margin-left: 125px;
+}
+
+.notification-meta span {
+  font-style: italic; /* Kiểu chữ nghiêng cho kiểu và thời gian */
+}
+
+.notification-type {
+  color: #007bff; /* Màu xanh cho kiểu thông báo */
+}
+
+.notification-time {
+  color: #888; /* Màu xám đậm cho thời gian */
+
+}
+
+.type-orders { background-color: #4caf50; color: white }    /* Xanh lá cho đơn hàng */
+.type-products { background-color: #2196f3;color: white }  /* Xanh dương cho sản phẩm */
+.type-users { background-color: #ff9800; color: white}     /* Vàng cam cho người dùng */
+.type-chats { background-color: #9c27b0; color: white}     /* Tím cho tin nhắn */
+.type-letters { background-color: #f44336;color: white; }  /* Đỏ cho thư từ khách hàng */
+
+
+.notification-list .no-notification {
+  text-align: center;
+  padding: 15px 0;
+  color: #888;
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.account {
+  display: flex; 
+  align-items: center; 
+}
+.inner-dir{
+  width: 200px;
+  height: 2px;
+  background: #333;
+  margin: 0 auto;
+  margin-bottom: 20px;
+
+}
+.new-notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  display: none; /* Mặc định ẩn đi */
+}
+a {
+  text-decoration: none !important;
+  color: #333;
+}
+/* End Phần tử header */
+#chatRequestContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Khoảng cách giữa các yêu cầu */
+  z-index: 1000;
+}
+
+.chat-request-popup {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  animation: slide-in 0.5s ease;
+  position: relative;
+  text-align: center;
+}
+
+.chat-request-popup h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.chat-request-popup p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.chat-request-popup .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-request-popup .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.chat-request-popup .btn-accept {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.chat-request-popup .btn-accept:hover {
+  background-color: #218838;
+}
+
+.chat-request-popup .btn-reject {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.chat-request-popup .btn-reject:hover {
+  background-color: #c82333;
+}
+
+.chat-request-popup.hide {
+  display: none;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

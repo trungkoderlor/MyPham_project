@@ -1,7 +1,20 @@
-mixin sub-menu(items, path)
-  ul 
+mixin sub-menu(items, path, isRoot = true) 
+  
+  ul
+    if isRoot
+      li
+        a.dropdown-item(href="#" )
+          img(src="/images/brand.png" alt="Thương hiệu" style="width: 20px; height: 20px; margin-right: 10px;")
+          | Thương hiệu 
+        .dropdown-brand
+          each brand in brands 
+            a.dropdown-item(href=`${path}/?brand=${brand.id}`)
+              img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
+              | #{brand.title} 
     each item in items
       li
-        a(href=`${path}/${item.slug}`)= item.title
+        a(href=`${path}?category=${item.id}`)= item.title
         if item.children && item.children.length > 0
-          +sub-menu(item.children, `${path}`)
+          +sub-menu(item.children, `${path}`, false)
+    
+    

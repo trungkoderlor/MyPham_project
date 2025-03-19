@@ -5,7 +5,8 @@ block main
       .row
           .col-md-12
             br
-            h1.text-center Products
+            if products.length>0
+              h1.text-center Products
       .row
         .col-md-3
           .filter-section
@@ -16,53 +17,67 @@ block main
                 select.form-control(name="category" id="category")
                   option(value="") Tất cả
                   each category in categories
-                    option(value=category._id)= category.title
+                    option(value=category._id selected= ( category._id ==category_id ? true : false))= category.title
               .form-group
                 label(for="price") Giá
                 select.form-control(name="price" id="price")
                   option(value="") Tất cả
-                  option(value="0-50") 0 - 50$
-                  option(value="50-100") 50 - 100$
-                  option(value="100-200") 100 - 200$
-                  option(value="200-500") 200 - 500$
-                  option(value="500") Trên 500$
+                  option(value="0-50" selected =(price == "0-50" ? true : false) ) 0 - 50$
+                  option(value="50-100"  selected =(price == "50-100" ? true : false) ) 50 - 100$
+                  option(value="100-200"  selected =(price == "100-200" ? true : false) ) 100 - 200$
+                  option(value="200-500"  selected =(price == "200-500" ? true : false) ) 200 - 500$
+                  option(value="500"  selected =(price == "500" ? true : false)) Trên 500$
               .form-group
                 label(for="rating") Đánh giá
                 select.form-control(name="rating" id="rating")
                   option(value="") Tất cả
-                  option(value="1") 1 sao
-                  option(value="2") 2 sao
-                  option(value="3") 3 sao
-                  option(value="4") 4 sao
-                  option(value="5") 5 sao
-              button.btn.btn-primary(type="submit") Áp dụng
-        .col-md-9
-          .row
-            each item in products
-              .col-6.col-md-4.col-lg-3
-                .product-item
-                  .inner-image
-                    img(
-                      src=item.thumbnail 
-                      alt=item.title
-                    )
-                    span(class="inner-onsale") 
-                      i(class="fa-solid fa-bolt")
-                      | Giảm #{item.discountPercentage}%
-                  .inner-content
-                    h3.inner-title
-                      a(href=`/products/${item.slug}`) #{item.title}
-                      if item.title.length < 18 
-                        .break(style="height:20px")
+                  option(value="1" selected =(rating == 1? true: false)) 1 sao
+                  option(value="2" selected =(rating == 2? true: false)) 2 sao
+                  option(value="3" selected =(rating == 3? true: false)) 3 sao
+                  option(value="4" selected =(rating == 4? true: false)) 4 sao
+                  option(value="5" selected =(rating == 5? true: false)) 5 sao
+              if (category_id || price || rating)
+                .row
+                  .col-6
+                    button.btn.btn-primary(type="submit") Áp dụng
+                  .col-6
+                    a.btn.btn-primary(href="/products") Xóa
+              else 
+                button.btn.btn-primary(type="submit") Áp dụng
+        if products.length == 0
+          .col-md-9
 
-                    .inner-price
-                      .row 
-                        .col-6.text-center
-                          span.inner-price-new #{item.priceNew}$
-                        .col-6.text-center
-                          span.inner-price-old #{item.price}$            
-                      .row.text-center(style="margin-top: 10px") 
-                        +rating(item)
+            p.text-center.text-muted(style="margin-top:30vh; font-size:60px") 
+              <i class="fa-regular fa-face-sad-tear text-center" ></i>
+            h6.text-center.text-muted(style="margin:auto") Không có sản phẩm nào   
+        else  
+          .col-md-9
+            .row
+              each item in products
+                .col-6.col-md-4.col-lg-3
+                  .product-item
+                    .inner-image
+                      img(
+                        src=item.thumbnail 
+                        alt=item.title
+                      )
+                      span(class="inner-onsale") 
+                        i(class="fa-solid fa-bolt")
+                        | Giảm #{item.discountPercentage}%
+                    .inner-content
+                      h3.inner-title
+                        a(href=`/products/${item.slug}`) #{item.title}
+                        if item.title.length < 18 
+                          .break(style="height:20px")
+
+                      .inner-price
+                        .row 
+                          .col-6.text-center
+                            span.inner-price-new #{item.priceNew}$
+                          .col-6.text-center
+                            span.inner-price-old #{item.price}$            
+                        .row.text-center(style="margin-top: 10px") 
+                          +rating(item)
 
         
                       

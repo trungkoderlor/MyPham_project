@@ -1,7 +1,7 @@
 // Nút mở/tắt sidebar
 button.sidebar-toggle.btn.btn-primary(type="button", onclick="toggleSidebar()")
     i(class="fas fa-bars") 
-.sider 
+.sider.active 
     .inner-menu 
         ul 
             li
@@ -14,6 +14,11 @@ button.sidebar-toggle.btn.btn-primary(type="button", onclick="toggleSidebar()")
                     a(href=`${prefixAdmin}/categories`)
                         i.fas.fa-list-alt
                         | Danh Mục Sản Phẩm
+            if(role.permissions.includes('brand_view'))
+                li 
+                    a(href=`${prefixAdmin}/brands`)
+                        i.fas.fa-tags
+                        | Thương Hiệu
             if(role.permissions.includes('product_view'))
                 li 
                     a(href=`${prefixAdmin}/products`)
@@ -49,6 +54,11 @@ button.sidebar-toggle.btn.btn-primary(type="button", onclick="toggleSidebar()")
                     a(href=`${prefixAdmin}/letters`)
                         i.fas.fa-envelope
                         | Liên Hệ Khách Hàng
+            if (role.permissions.includes('review_view'))
+                li 
+                    a(href=`${prefixAdmin}/reviews`)
+                        i.fas.fa-star
+                        | Đánh Giá Sản Phẩm
             if (role.permissions.includes('setting-general_view'))
                 li 
                     a(href=`${prefixAdmin}/settings/general`)

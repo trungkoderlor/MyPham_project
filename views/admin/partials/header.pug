@@ -1,13 +1,37 @@
+include ../mixins/noti.pug 
 
 header.header
+    #notification-toast.notification-toast.hide(admin-id = user._id)
+    #chatRequestContainer
     .row(style="height: 100%")
       .col-6
         .header__left.ml-5
-          a(href=`${prefixAdmin}/dashboard`) ADMIN
+          a(href=`${prefixAdmin}/dashboard`) 
+            img.mb-2.mr-2(src="/images/dhtlogofooter-removebg.png" alt="logo" style="border: none;width: 30px !important; height:30px !important"  )
+            | ADMIN
       .col-6
         .header__right.float-right
+          .notification-wrapper
+            i.notification-icon.fas.fa-bell
+            if unreadNotificationsCount > 0
+              .notification-count #{unreadNotificationsCount}
+            .notification-list.hide
+              if notifications.length > 0
+                each notification in notifications
+                  a.notification-item(
+                    href=notification.detailLink
+                    data-id=notification._id 
+                    class=(notification.isRead ? '' : 'unread'))
+                    .notification-content 
+                      | #{notification.content}
+                    .notification-meta
+                      span.notification-type(class=`type-${notification.type}`) #{notification.type}
+                      span.notification-time.ml-2 #{new Date(notification.createdAt).toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' })}
+              else 
+                .no-notification Không có thông báo nào
+
           .account
-            <i class="fa-solid fa-user-secret mr-2"></i>
+            img.avatar-admin.mr-2(src=`${user.avatar}` alt="Avatar")
             .account__name #{user.fullname}
             .dropdown
               ul

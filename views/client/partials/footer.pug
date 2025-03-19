@@ -1,5 +1,5 @@
 footer.footer
-  .row.header-footer(style="margin:0;margin-bottom:10px;") 
+  .row.header-footer.custom-display-f(style="margin:0;margin-bottom:10px;") 
     .col-xl-3.col-lg-3.col-sm-6.col-6 
       img(src="/images/chatluong.png" width="45px")
       | SẢN PHẨM CHẤT LƯỢNG
@@ -21,9 +21,9 @@ footer.footer
         .footer-section.about
           h2 Về Chúng Tôi
           p
-            | Chúng tôi là một công ty chuyên cung cấp các sản phẩm chất lượng cao. Sứ mệnh của chúng tôi là mang lại sự hài lòng cho khách hàng.
+            | !{settingGeneral.desc}
       .col-md-3
-        .footer-section.links
+        .footer-section.links.custom-display
           h2 Liên Kết
           ul.list-unstyled
             li
@@ -39,14 +39,15 @@ footer.footer
           h2 Liên Hệ
           p
             i.fas.fa-map-marker-alt
-            |  Địa chỉ: 55 Đường Giải Phóng, Quận HBT, Hà Nội
+            |  Địa chỉ: #{settingGeneral.address}
           p
             i.fas.fa-phone
-            |  Điện thoại: (+84) 768-517-629
+            |  Điện thoại: #{settingGeneral.phone}
           p
             i.fas.fa-envelope
-            |  Email: trung0073467@huce.edu.com
+            |  Email: #{settingGeneral.email}
     hr.footer-divider
     .row
       .col-md-12.text-center
-        p Copyright &copy; 2024 dht.com Design by DauHuyTrung
+        p  !{settingGeneral.coppyright}
+          

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Controller = require("../../controllers/admin/role.controller");
-
+const roleValidate = require("../../validates/admin/role.validate");
 router.get('/',Controller.index) ;
 router.get('/create',Controller.create);
-router.post('/create',Controller.createPost);
+router.post('/create',roleValidate.createPost,Controller.createPost);
 router.get('/edit/:id',Controller.edit);
 router.get('/permissions',Controller.permissions);
 router.patch('/permissions',Controller.permissionsPatch);
-router.patch('/edit/:id',Controller.editPatch);
-
+router.patch('/edit/:id',roleValidate.createPost,Controller.editPatch);
+router.delete('/delete/:id',Controller.delete);
 module.exports = router;

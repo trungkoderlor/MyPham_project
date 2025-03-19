@@ -1,66 +1,74 @@
 include ../mixins/search.pug
 include ../mixins/account.pug
 include ../mixins/sub-menu.pug
+include ../mixins/alert.pug
 header.header
-  .container-fluid(style="background-color: #C7C7C7")
+  +alert-popup(expressFlash, 5000)
+  .container-fluid.custom-display(style="background-color: #C7C7C7")
     .row
       .col-1 
       .col-6(style="text-align:left")
-        p Chuyên cung cấp mỹ phẩm chính hãng
+        p #{settingGeneral.s_desc}
       .col-2(style="text-align:right")
         p
           i.fas.fa-phone
-          |  (+84) 768-517-629
+          |  #{settingGeneral.phone}
       .col-3(style="text-align:right")
         p
           i.fas.fa-map-marker-alt
-          |  55 Đường Giải Phóng, Quận HBT, Hà Nội
-  .container
-      .row.align-items-center
-        .col-md-1
-        .col-md-2
-          .logo
-            a(href="/" class="navbar-brand") 
-              img(src="/images/dhtlogo.png" alt="logo" width="100px" )
-        .col-md-4
-          +search(keyword)
-        .col-md-3
-          nav
-            ul.nav.justify-content-center
-              li.nav-item
-                a.nav-link(href="https://shopee.vn/" target="_blank" ) 
-                  img(src="https://cdn.bapperfume.com/media/core/icons/shopee.png"  alt="Shopee" width="30px")
-              li.nav-item
-                a.nav-link(href="/cart" style="margin-top:5px; color: black")
-                  i.fas.fa-shopping-cart
-                  |  Giỏ Hàng
-        .col-md-2.text-right
-          +account()   
+          |   #{settingGeneral.address}
+  .container(style="width: 80%;")
+    .row.align-items-center
+      .col-md-2.text-center
+        .logo
+          a(href="/" class="navbar-brand" tabindex="-1" ) 
+            img(src= settingGeneral.logo alt="logo" width="75px" )
+      .col-md-6.float-right
+        +search(keyword)
+      .col-md-1(style="padding: 0px;")
+        if miniCart
+          a.float-right.nav-link(href="/cart" style="margin-top:0px;padding: 0px; color: black;font-size: 2rem;")
+            i.fa-solid.fa-bag-shopping
+            span.cart-badge #{miniCart.totalQuantity}
+          
+      .col-md-3.text-right(style="padding: 0px;")
+        if clientUser
+          .account-dropdown
+            a.account.float-right.nav-link(href="/user/info" tyle="padding: 6px;")
+              i.fas.fa-user
+              |  #{clientUser.fullname}
+            ul.dropdown-menu(style="display: none; position: absolute; right: 0; background-color: #fff; border: 1px solid #ccc; padding: 10px; list-style: none;")
+              li
+                a.nav-link(href="/user/info") Tài khoản của tôi
+              li
+                a.nav-link(href="/user/history-orders") Lịch sử mua hàng
+              li
+                a.nav-link(href="/user/logout") Đăng xuất
+        else
+          a.float-right.nav-link(href="/user/login" style="padding: 6px;") Đăng nhập
+          a.float-right.nav-link(href="/user/register" style="padding: 6px;" ) Đăng ký
+        a.float-right.nav-link(href=`/user/chat` style="padding: 6px; color: black")
+          i.fas.fa-comments
+          |  Chat
+      
+             
   nav.navbar.navbar-expand-lg.navbar-light.bg-light
     .container()
       button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
         span.navbar-toggler-icon
       .collapse.navbar-collapse#navbarNav()
-        ul.navbar-nav
-          li.sub-menu.nav-item(style="margin-left: 120px")
+        ul.navbar-nav.mx-auto.justify-content-center
+          li.sub-menu.nav-item
             a.nav-link(href="/products") 
               | Danh mục sản phẩm 
               <i class="fa-solid fa-caret-down"></i>
             
             - const path = "/products"
-            +sub-menu(categories, path)  
+            +sub-menu(categories, path)
           li.nav-item
             a.nav-link(href="/") Trang chủ
           li.nav-item
-            a.dropdown-item.nav-link(href="#" id="dropdownbrand")
-              img(src="/images/brand.png" alt="Thương hiệu" style="width: 20px; height: 20px; margin-right: 10px;")
-              | Thương hiệu 
-              <i class="fa-solid fa-caret-down"></i>
-            .dropdown-brand
-              each brand in brands 
-                a.dropdown-item(href=`/brand/${brand.title}`)
-                  img(src="/images/brand.png" style="width: 20px; height: 20px; margin-right: 10px;")
-                  | #{brand.title}
+           
           li.nav-item
             a.nav-link(href="/products") Sản Phẩm
           li.nav-item

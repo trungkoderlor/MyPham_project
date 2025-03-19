@@ -1,12 +1,15 @@
 extends ../../../client/layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/product-layout.pug
+block head 
+  link(rel="stylesheet", href="/css/checkout-success.css")
 block main
   script(src="/js/cart.js") 
-  .container.my-3
+  .container.my-5.checkout-success 
     .row
       .col-12
-        +box-head('Đặt Hàng Thành Công')
+        +box-head('Đặt hàng thành công')
+
     .row
       .col-12
         div(class="alert alert-success")
@@ -57,5 +60,9 @@ block main
                     
                   td #{item.quantity}
                     
-                  td #{item.totalPrice}$             
+                  td #{item.totalPrice}$           
       h3(class="text-right") Tổng tiền: #{order.totalPrice}$
+    .row.text-right
+      .col-3
+        a.btn.btn-success.btn-block(href="/user/history-orders")
+          | Tới Đơn Hàng

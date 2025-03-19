@@ -1,24 +1,24 @@
 extends ../../../client/layouts/default.pug
-block main
-  .container(style="margin-top: 20px; border: 1px solid #ddd; border-radius: 30px;padding-bottom: 20px;")
+block main         
+  #contact.container(style="margin-top: 20px; border: 1px solid #ddd; border-radius: 30px;padding-bottom: 20px;")
     .row
       .col-md-12
         h1.text-center(style="margin: 25px 0;") Liên Hệ
         .row
           .col-md-6
-            form(action="/contact", method="POST")
+            form.inner-form(action="/contact", method="POST")
               .form-group
-                label(for="fullname") Họ và Tên
-                input.form-control#fullname(type="text" name="fullname" placeholder="Nhập họ và tên của bạn")
+                label(for="fullname" ) Họ và Tên
+                input.form-control#fullname(type="text" name="fullname" value=(clientUser ? clientUser.fullname : "" ) placeholder="Nhập họ và tên của bạn" required)
               .form-group
                 label(for="email") Email
-                input.form-control#email(type="email" name="email" placeholder="Nhập email của bạn")
+                input.form-control#email(type="email" name="email" value=(clientUser ? clientUser.email : "" ) placeholder="Nhập email của bạn" required)
               .form-group
                 label(for="phone") Số điện thoại
-                input.form-control#phone(type="text" name="phone"  placeholder="Nhập số điện thoại của bạn")
+                input.form-control#phone(type="text" name="phone"  value=(clientUser ? clientUser.phone : "" )  placeholder="Nhập số điện thoại của bạn" required)
               .form-group
                 label(for="message") Nội dung
-                textarea.form-control#message(rows="5" name="message" placeholder="Nhập nội dung cần liên hệ")
+                textarea.form-control#message(rows="5" name="message" placeholder="Nhập nội dung cần liên hệ" required)
               button.btn.btn-primary#btn-send(type="submit") Gửi
           .col-md-6
             img(src="/images/contact.png" class="img_contact" alt="contact" style="width: 100%")

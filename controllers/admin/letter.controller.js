@@ -58,9 +58,6 @@ module.exports.index = async (req, res) => {
 module.exports.detail = async (req, res) => {
     
     const id = req.params.id;
-    
-    
-
     var letter = await Letter.findOne({_id: id});
     if (letter.status === "unprocessed") {
         await Letter.updateOne({_id: id}, { status: "processing"});

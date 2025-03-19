@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
         default: generate.generateRandomString(20)
     },
     phone: String,
+    room_id: String,
     avatar: String,
     status: {
         type: String,
